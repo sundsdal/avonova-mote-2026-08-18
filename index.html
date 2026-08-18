@@ -371,62 +371,17 @@ body.on-dark .tab.active { color: var(--accent); }
 }
 .ready li:last-child { border-bottom: 1px solid var(--line); }
 
-/* Abel — patient at the center */
-.web {
-  position: relative;
-  width: min(100%, 44rem);
-  aspect-ratio: 1.42 / 1;
-  margin: 0.6rem auto 0;
+/* Abel — one circle, no mesh */
+.abel-fig {
+  width: min(100%, 40rem);
+  margin: 0.35rem auto 0;
+  display: block;
 }
-.web svg {
-  position: absolute;
-  inset: 0;
-  overflow: visible;
+.abel-fig svg {
+  display: block;
+  width: 100%;
+  height: auto;
 }
-.web-core {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -46%);
-  text-align: center;
-  pointer-events: none;
-}
-.web-who {
-  font-family: var(--display);
-  font-weight: 500;
-  font-size: clamp(30px, 3.6vw, 42px);
-  letter-spacing: -0.02em;
-  line-height: 1;
-  color: var(--ink);
-}
-.web-gp {
-  margin-top: 0.35rem;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--mute);
-}
-.web-gp span {
-  color: var(--accent-ink);
-  border-bottom: 2px solid var(--accent);
-  padding-bottom: 0.05em;
-}
-.web-n {
-  position: absolute;
-  font-family: var(--display);
-  font-weight: 500;
-  font-size: clamp(20px, 2.5vw, 28px);
-  letter-spacing: -0.02em;
-  line-height: 1;
-  color: var(--ink);
-  white-space: nowrap;
-}
-.web-trening { top: 1%; left: 50%; transform: translateX(-50%); }
-.web-bht { top: 28%; right: 0; }
-.web-fors { bottom: 4%; right: 8%; }
-.web-nav { bottom: 4%; left: 8%; }
-.web-kin { top: 28%; left: 0; }
 
 .arrow {
   display: block;
@@ -819,7 +774,7 @@ body.on-dark .tab.active { color: var(--accent); }
   .vita-row { grid-template-columns: 1fr; gap: 0.2rem; }
   .tab-label { display: none; }
   .tab { justify-content: center; min-width: 2.6rem; }
-  .web { max-width: 22rem; }
+  .abel-fig { max-width: 26rem; }
   .demo-steps .l { display: none; }
 }
 
@@ -907,32 +862,20 @@ body.on-dark .tab.active { color: var(--accent); }
     <section class="slide" data-i="3" id="s04">
       <div class="slide-body">
         <p class="kicker">Abel</p>
-        <h1 class="display h-s">Pasienten i midten.</h1>
-        <div class="web" role="img" aria-label="Pasienten i midten. Fastlegen koordinerer. Trening, BHT, forsikring, NAV og Kin rundt.">
-          <svg viewBox="0 0 200 140" fill="none" aria-hidden="true">
-            <path d="M100 14 C 78 28, 72 52, 92 64" stroke="#A39E90" stroke-width="1.25"/>
-            <path d="M176 42 C 150 36, 124 48, 110 64" stroke="#A39E90" stroke-width="1.25"/>
-            <path d="M168 122 C 146 104, 124 90, 108 78" stroke="#A39E90" stroke-width="1.25"/>
-            <path d="M32 122 C 54 104, 76 90, 92 78" stroke="#A39E90" stroke-width="1.25"/>
-            <path d="M24 42 C 50 36, 76 48, 90 64" stroke="#A39E90" stroke-width="1.25"/>
-            <path d="M112 12 C 150 4, 176 18, 178 40" stroke="#C4BFAF" stroke-width="1.05"/>
-            <path d="M180 50 C 192 78, 186 108, 170 122" stroke="#C4BFAF" stroke-width="1.05"/>
-            <path d="M160 128 C 120 140, 80 140, 40 128" stroke="#C4BFAF" stroke-width="1.05"/>
-            <path d="M28 122 C 10 104, 6 72, 22 48" stroke="#C4BFAF" stroke-width="1.05"/>
-            <path d="M22 40 C 28 16, 60 6, 88 12" stroke="#C4BFAF" stroke-width="1.05"/>
-            <path d="M100 16 C 40 36, 36 100, 88 122" stroke="#D2CDBE" stroke-width="0.95"/>
-            <path d="M100 16 C 160 36, 164 100, 112 122" stroke="#D2CDBE" stroke-width="0.95"/>
-            <ellipse cx="100" cy="70" rx="32" ry="21" stroke="#2FB56A" stroke-width="1.6"/>
+        <h1 class="display h-s">Samarbeid rundt pasienten</h1>
+        <div class="abel-fig" role="img" aria-label="Samarbeid rundt pasienten. Fastlegen koordinerer. Trening, Lege/BHT, NAV, Forsikring og Kin rundt.">
+          <svg viewBox="0 0 640 520" fill="none" aria-hidden="true">
+            <text x="320" y="28" text-anchor="middle" dominant-baseline="middle" font-family="Manrope, ui-sans-serif, sans-serif" font-size="11" font-weight="600" letter-spacing="0.12em" fill="#7E8B82">SAMARBEID</text>
+            <circle cx="320" cy="250" r="132" fill="none" stroke="#ECE8DD" stroke-width="1"/>
+            <text x="320" y="242" text-anchor="middle" dominant-baseline="middle" font-family="Cormorant Garamond, Times New Roman, serif" font-size="32" font-weight="500" fill="#1B1D1A">Pasienten</text>
+            <text x="320" y="270" text-anchor="middle" dominant-baseline="middle" font-family="Manrope, ui-sans-serif, sans-serif" font-size="14" font-weight="500" fill="#2FB56A">Fastlegen koordinerer</text>
+            <text x="320" y="72" text-anchor="middle" dominant-baseline="middle" font-family="Manrope, ui-sans-serif, sans-serif" font-size="15" font-weight="500" fill="#1B1D1A">Trening</text>
+            <text x="474" y="161" text-anchor="middle" dominant-baseline="middle" font-family="Manrope, ui-sans-serif, sans-serif" font-size="15" font-weight="500" fill="#1B1D1A">Lege/BHT</text>
+            <text x="409" y="404" text-anchor="middle" dominant-baseline="middle" font-family="Manrope, ui-sans-serif, sans-serif" font-size="15" font-weight="500" fill="#1B1D1A">NAV</text>
+            <text x="166" y="339" text-anchor="middle" dominant-baseline="middle" font-family="Manrope, ui-sans-serif, sans-serif" font-size="15" font-weight="500" fill="#1B1D1A">Forsikring</text>
+            <text x="166" y="161" text-anchor="middle" dominant-baseline="middle" font-family="Manrope, ui-sans-serif, sans-serif" font-size="15" font-weight="500" fill="#1B1D1A">Kin</text>
+            <text x="320" y="468" text-anchor="middle" dominant-baseline="middle" font-family="Manrope, ui-sans-serif, sans-serif" font-size="14" font-weight="400" fill="#7E8B82">Én pasient. Flere parter. Fastlegen holder tråden.</text>
           </svg>
-          <p class="web-n web-trening">Trening</p>
-          <p class="web-n web-bht">BHT</p>
-          <p class="web-n web-fors">Forsikring</p>
-          <p class="web-n web-nav">NAV</p>
-          <p class="web-n web-kin">Kin</p>
-          <div class="web-core">
-            <p class="web-who">Pasienten</p>
-            <p class="web-gp">Koordinert av <span>fastlegen</span></p>
-          </div>
         </div>
       </div>
     </section>

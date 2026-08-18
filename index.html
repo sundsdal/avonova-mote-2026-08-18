@@ -373,7 +373,7 @@ body.on-dark .tab.active { color: var(--accent); }
 }
 .ready li:last-child { border-bottom: 1px solid var(--line); }
 
-/* Helsesamarbeid — colored partners + data exchanges */
+/* Helsesamarbeid — exchanges between players; some via pasienten */
 .web { width: min(100%, 34rem); aspect-ratio: 1.15 / 1; position: relative; margin: 1.5rem auto 0; }
 .web-n {
   position: absolute;
@@ -407,6 +407,7 @@ body.on-dark .tab.active { color: var(--accent); }
 }
 .web-x {
   position: absolute;
+  z-index: 2;
   font-family: var(--sans);
   font-size: 11px;
   font-weight: 600;
@@ -418,49 +419,66 @@ body.on-dark .tab.active { color: var(--accent); }
   pointer-events: none;
   opacity: 0;
   line-height: 1.2;
+  transform: translate(-50%, -50%);
 }
 .web-x.x-trening { color: #8A6E2E; background: #F3EAD3; border-color: #D4C08A; }
 .web-x.x-lege { color: #176B42; background: #E4F4EA; border-color: #9AD4B2; }
 .web-x.x-bht { color: #3F6F6A; background: #E4EEEC; border-color: #A3C4C0; }
 .web-x.x-nav { color: #6A5A48; background: #F0E8DF; border-color: #C8B6A2; }
 .web-x.x-fors { color: #9A542C; background: #F6E6DA; border-color: #E0B496; }
-#s04.is-current .web-x.x-trening { animation: x-a 7.5s 0s infinite; }
-#s04.is-current .web-x.x-lege { animation: x-b 7.5s 1.5s infinite; }
-#s04.is-current .web-x.x-bht { animation: x-c 7.5s 3s infinite; }
-#s04.is-current .web-x.x-nav { animation: x-d 7.5s 4.5s infinite; }
-#s04.is-current .web-x.x-fors { animation: x-e 7.5s 6s infinite; }
-@keyframes x-a {
-  0%, 8% { opacity: 0; top: 16%; left: 50%; transform: translate(-50%, 0); }
-  22%, 34% { opacity: 1; top: 30%; left: 50%; transform: translate(-50%, 0); }
-  48%, 100% { opacity: 0; top: 40%; left: 50%; transform: translate(-50%, 0); }
+#s04.is-current .web-x.x-trening { animation: flow-trening-lege 14s 0s infinite; }
+#s04.is-current .web-x.x-lege { animation: flow-lege-via-nav 14s 2.6s infinite; }
+#s04.is-current .web-x.x-bht { animation: flow-bht-lege 14s 5.2s infinite; }
+#s04.is-current .web-x.x-nav { animation: flow-nav-via-trening 14s 7.8s infinite; }
+#s04.is-current .web-x.x-fors { animation: flow-fors-via-bht 14s 10.4s infinite; }
+/* Trening → Lege (mellom spillere) */
+@keyframes flow-trening-lege {
+  0%, 6% { opacity: 0; left: 50%; top: 10%; }
+  12% { opacity: 1; left: 50%; top: 10%; }
+  38% { opacity: 1; left: 88%; top: 28%; }
+  48%, 100% { opacity: 0; left: 88%; top: 28%; }
 }
-@keyframes x-b {
-  0%, 8% { opacity: 0; top: 28%; right: 2%; }
-  22%, 34% { opacity: 1; top: 40%; right: 22%; }
-  48%, 100% { opacity: 0; top: 46%; right: 34%; }
+/* Lege → Pasienten → NAV */
+@keyframes flow-lege-via-nav {
+  0%, 6% { opacity: 0; left: 88%; top: 28%; }
+  12% { opacity: 1; left: 88%; top: 28%; }
+  28% { opacity: 1; left: 50%; top: 50%; }
+  36% { opacity: 1; left: 50%; top: 50%; }
+  54% { opacity: 1; left: 16%; top: 88%; }
+  64%, 100% { opacity: 0; left: 16%; top: 88%; }
 }
-@keyframes x-c {
-  0%, 8% { opacity: 0; bottom: 8%; right: 10%; }
-  22%, 34% { opacity: 1; bottom: 26%; right: 22%; }
-  48%, 100% { opacity: 0; bottom: 36%; right: 34%; }
+/* BHT → Lege (mellom spillere) */
+@keyframes flow-bht-lege {
+  0%, 6% { opacity: 0; left: 80%; top: 90%; }
+  12% { opacity: 1; left: 80%; top: 90%; }
+  40% { opacity: 1; left: 88%; top: 28%; }
+  50%, 100% { opacity: 0; left: 88%; top: 28%; }
 }
-@keyframes x-d {
-  0%, 8% { opacity: 0; bottom: 8%; left: 10%; }
-  22%, 34% { opacity: 1; bottom: 26%; left: 22%; }
-  48%, 100% { opacity: 0; bottom: 36%; left: 34%; }
+/* NAV → Pasienten → Trening */
+@keyframes flow-nav-via-trening {
+  0%, 6% { opacity: 0; left: 16%; top: 88%; }
+  12% { opacity: 1; left: 16%; top: 88%; }
+  28% { opacity: 1; left: 50%; top: 50%; }
+  36% { opacity: 1; left: 50%; top: 50%; }
+  54% { opacity: 1; left: 50%; top: 10%; }
+  64%, 100% { opacity: 0; left: 50%; top: 10%; }
 }
-@keyframes x-e {
-  0%, 8% { opacity: 0; top: 28%; left: 0; }
-  22%, 34% { opacity: 1; top: 40%; left: 16%; }
-  48%, 100% { opacity: 0; top: 46%; left: 30%; }
+/* Forsikring → Pasienten → BHT */
+@keyframes flow-fors-via-bht {
+  0%, 6% { opacity: 0; left: 10%; top: 28%; }
+  12% { opacity: 1; left: 10%; top: 28%; }
+  28% { opacity: 1; left: 50%; top: 50%; }
+  36% { opacity: 1; left: 50%; top: 50%; }
+  54% { opacity: 1; left: 80%; top: 90%; }
+  64%, 100% { opacity: 0; left: 80%; top: 90%; }
 }
 @media (prefers-reduced-motion: reduce) {
   #s04.is-current .web-x { animation: none; opacity: 1; }
-  #s04.is-current .web-x.x-trening { top: 28%; left: 50%; transform: translateX(-50%); }
-  #s04.is-current .web-x.x-lege { top: 38%; right: 20%; }
-  #s04.is-current .web-x.x-bht { bottom: 22%; right: 18%; }
-  #s04.is-current .web-x.x-nav { bottom: 22%; left: 18%; }
-  #s04.is-current .web-x.x-fors { top: 38%; left: 14%; }
+  #s04.is-current .web-x.x-trening { left: 70%; top: 18%; }
+  #s04.is-current .web-x.x-lege { left: 50%; top: 50%; }
+  #s04.is-current .web-x.x-bht { left: 84%; top: 58%; }
+  #s04.is-current .web-x.x-nav { left: 32%; top: 70%; }
+  #s04.is-current .web-x.x-fors { left: 30%; top: 40%; }
 }
 .web-gp  { margin-top: 1.25rem; font-size: 15px; font-weight: 500; color: var(--accent-ink); text-align: center; }
 .web-plat { margin-top: 0.25rem; font-size: 14px; color: var(--mute); text-align: center; }
@@ -905,7 +923,7 @@ body.on-dark .tab.active { color: var(--accent); }
       <div class="slide-body">
         <p class="kicker">Helsesamarbeid</p>
         <h1 class="display h-s">Pasienten i midten.</h1>
-        <div class="web" role="img" aria-label="Pasienten i midten. Trening, Lege, BHT, NAV og Forsikring rundt. Fastlegen kan koordinere. Kin er plattformen de møtes i.">
+        <div class="web" role="img" aria-label="Helsesamarbeid. Data går mellom partene. Noen utvekslinger går via pasienten.">
           <div class="web-n n12">
             <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <circle cx="5" cy="12" r="2.4"/>

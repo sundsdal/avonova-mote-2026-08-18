@@ -246,21 +246,48 @@ body.on-dark .tab.active { color: var(--accent); }
 .nav-btn:focus-visible,
 .tab:focus-visible { outline: 1px solid var(--accent); outline-offset: 2px; }
 
-/* Sverre — huge facts */
-.vita { margin-top: 1.6rem; max-width: 46rem; }
+/* Sverre — photo + logos */
+.bio-body {
+  display: grid;
+  grid-template-columns: minmax(11rem, 0.34fr) 1fr;
+  gap: clamp(1.4rem, 3.2vw, 3rem);
+  align-items: center;
+  max-width: 1100px;
+}
+.bio-photo {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: 50% 18%;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--field);
+}
+.vita { margin: 0; }
 .vita-row {
   display: grid;
-  grid-template-columns: minmax(9.5rem, 0.38fr) 1fr;
-  gap: 1.4rem;
-  align-items: baseline;
-  padding: 0.72rem 0;
+  grid-template-columns: 2.6rem 1fr;
+  gap: 1.05rem;
+  align-items: center;
+  padding: 0.62rem 0;
   border-top: 1px solid var(--line);
 }
 .vita-row:last-child { border-bottom: 1px solid var(--line); }
+.vita-logo {
+  width: 2.35rem;
+  height: 2.35rem;
+  object-fit: contain;
+  display: block;
+}
+.vita-logo.is-wide {
+  width: 5.4rem;
+  height: 1.7rem;
+  justify-self: start;
+}
 .vita-name {
   font-family: var(--display);
   font-weight: 500;
-  font-size: clamp(28px, 3.3vw, 40px);
+  font-size: clamp(26px, 3vw, 36px);
   letter-spacing: -0.02em;
   line-height: 1;
   color: var(--ink);
@@ -275,6 +302,55 @@ body.on-dark .tab.active { color: var(--accent); }
   margin-top: 0.12rem;
   font-size: 13px;
   color: var(--mute);
+}
+
+/* Triangle — goal in the middle */
+.triad-body {
+  display: grid;
+  place-items: center;
+}
+.triad {
+  position: relative;
+  width: min(82vh, 42rem);
+  aspect-ratio: 1.12 / 1;
+}
+.triad svg {
+  position: absolute;
+  inset: 16% 7% 18%;
+  width: auto;
+  height: auto;
+}
+.triad-node {
+  position: absolute;
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(26px, 3.2vw, 38px);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.triad-top { top: 0; left: 50%; transform: translateX(-50%); }
+.triad-left { bottom: 0; left: 0; }
+.triad-right { bottom: 0; right: 0; }
+.triad-core {
+  position: absolute;
+  top: 52%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 16rem;
+}
+.triad-core .kicker {
+  margin-bottom: 0.55rem;
+}
+.triad-goal {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(22px, 2.6vw, 30px);
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+  color: var(--ink);
 }
 
 /* Klar — four lines */
@@ -692,31 +768,34 @@ body.on-dark .tab.active { color: var(--accent); }
     </section>
 
     <section class="slide" data-i="1" id="s02">
-      <div class="slide-body">
-        <p class="kicker">Sverre Sundsdal</p>
-        <h1 class="display h-s">Bygget i skala. Nå i helse.</h1>
+      <div class="slide-body bio-body">
+        <img class="bio-photo" src="shots/sverre.png" alt="Sverre Sundsdal">
         <div class="vita">
-          <div class="vita-row"><p class="vita-name">Google</p><p class="vita-role">Search Infrastructure</p></div>
-          <div class="vita-row"><p class="vita-name">Telenor</p><p class="vita-role">VP Engineering</p></div>
-          <div class="vita-row"><p class="vita-name">Schibsted</p><p class="vita-role">Director of Engineering</p></div>
-          <div class="vita-row"><p class="vita-name">Babylon</p><p class="vita-role">Head of AI Engineering<small>4 → 200 mennesker · 1 → 17 land</small></p></div>
-          <div class="vita-row"><p class="vita-name">Livv</p><p class="vita-role">Gründer og CEO · €1,4M</p></div>
-          <div class="vita-row"><p class="vita-name mark">Kin</p><p class="vita-role">Kin Health AS<small>NTNU Datateknikk</small></p></div>
+          <div class="vita-row"><img class="vita-logo" src="shots/logos/google.png" alt="Google"><p class="vita-role">Search Infrastructure</p></div>
+          <div class="vita-row"><img class="vita-logo" src="shots/logos/telenor.png" alt="Telenor"><p class="vita-role">VP Engineering</p></div>
+          <div class="vita-row"><img class="vita-logo" src="shots/logos/schibsted.png" alt="Schibsted"><p class="vita-role">Director of Engineering</p></div>
+          <div class="vita-row"><img class="vita-logo is-wide" src="shots/logos/babylon.png" alt="Babylon"><p class="vita-role">Head of AI Engineering<small>4 → 200 mennesker · 1 → 17 land</small></p></div>
+          <div class="vita-row"><img class="vita-logo" src="shots/logos/livv.png" alt="Livv"><p class="vita-role">Gründer og CEO</p></div>
+          <div class="vita-row"><p class="vita-name mark">Kin</p><p class="vita-role">Kin Health AS</p></div>
         </div>
       </div>
     </section>
 
     <section class="slide" data-i="2" id="s03">
-      <div class="slide-body">
-        <p class="kicker">Klar</p>
-        <h1 class="display h-m">Fire ting er på plass.</h1>
-        <ul class="ready">
-          <li>AI</li>
-          <li>Regelverk</li>
-          <li>Compliant software</li>
-          <li>Styre team</li>
-        </ul>
-        <p class="note">Jeg <span class="mark">industrialiserer</span> det Avonova allerede gjør.</p>
+      <div class="slide-body triad-body">
+        <div class="triad" aria-label="Mitt mål: Preventativ AI for hele befolkningen. Health AI, Compliance, Scaling.">
+          <svg viewBox="0 0 100 86" fill="none" aria-hidden="true">
+            <polygon points="50,6 96,82 4,82" stroke="#ECE8DD" stroke-width="0.7"/>
+            <line x1="50" y1="6" x2="96" y2="82" stroke="#2FB56A" stroke-width="1.15"/>
+          </svg>
+          <p class="triad-node triad-top">Health AI</p>
+          <p class="triad-node triad-left">Compliance</p>
+          <p class="triad-node triad-right">Scaling</p>
+          <div class="triad-core">
+            <p class="kicker">Mitt mål</p>
+            <p class="triad-goal">Preventativ AI for <span class="mark">hele befolkningen</span>.</p>
+          </div>
+        </div>
       </div>
     </section>
 

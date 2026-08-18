@@ -573,38 +573,17 @@ body.on-dark .tab.active { color: var(--accent); }
   object-position: top center;
 }
 
-/* Vault figure */
+/* Vault figure — sealed room + support row */
 .vault-fig {
-  margin-top: 2.4rem;
-  max-width: 36rem;
+  width: 100%;
+  max-width: none;
+  height: auto;
+  margin-top: 1.2rem;
 }
-.vault-top,
-.vault-bot {
-  font-size: 18px;
-  line-height: 1.45;
-  color: var(--body);
-}
-.vault-mid {
-  margin: 1.15rem 0;
-  padding: 1.35rem 0;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-}
-.vault-k {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--mute);
-  margin-bottom: 0.55rem;
-}
-.vault-t {
-  font-family: var(--display);
-  font-weight: 500;
-  font-size: clamp(36px, 4.4vw, 52px);
-  letter-spacing: -0.02em;
-  line-height: 1.05;
-  color: var(--ink);
+.vault-fig svg {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 /* Routing figure */
@@ -903,12 +882,43 @@ body.on-dark .tab.active { color: var(--accent); }
         <p class="kicker">Helsehvelvet</p>
         <h1 class="display h-m">Et forseglet rom.</h1>
         <div class="vault-fig">
-          <p class="vault-top">Pasienten eier data.</p>
-          <div class="vault-mid">
-            <p class="vault-k">inni</p>
-            <p class="vault-t"><span class="mark">AI</span> i hvelvet</p>
-          </div>
-          <p class="vault-bot">Arbeidsgiver ser aldri identifiserbar helse.</p>
+          <svg viewBox="0 0 1000 420" role="img" aria-label="Helsehvelvet: dokumenter inn i et forseglet rom. AI i hvelvet organiserer og henter ut. Én nøkkel per hvelv. Pasienten eier data. Arbeidsgiver ser aldri identifiserbar helse.">
+            <!-- fact above -->
+            <text x="500" y="48" text-anchor="middle" font-family="Manrope, ui-sans-serif, sans-serif" font-size="14" font-weight="500" fill="#303630">Pasienten eier data.</text>
+
+            <!-- docs in (left of gap) -->
+            <text x="220" y="136" text-anchor="middle" font-family="Manrope, ui-sans-serif, sans-serif" font-size="12" font-weight="500" fill="#7E8B82">Dokumenter inn</text>
+            <rect x="210" y="148" width="44" height="9" rx="1" fill="none" stroke="#ECE8DD" stroke-width="1"/>
+            <rect x="198" y="162" width="44" height="9" rx="1" fill="none" stroke="#ECE8DD" stroke-width="1"/>
+            <rect x="210" y="176" width="44" height="9" rx="1" fill="none" stroke="#ECE8DD" stroke-width="1"/>
+            <rect x="186" y="190" width="44" height="9" rx="1" fill="none" stroke="#ECE8DD" stroke-width="1"/>
+            <rect x="202" y="204" width="44" height="9" rx="1" fill="none" stroke="#ECE8DD" stroke-width="1"/>
+            <!-- line from right of middle slip to gap -->
+            <line x1="254" y1="180.5" x2="300" y2="170" stroke="#ECE8DD" stroke-width="1"/>
+
+            <!-- vault perimeter -->
+            <rect x="300" y="70" width="400" height="200" rx="6" fill="#FFFEFA" stroke="#1B1D1A" stroke-width="1.25"/>
+            <!-- paper gap in left wall -->
+            <rect x="298" y="155" width="4" height="30" fill="#FBF9F4"/>
+
+            <!-- AI inside vault, dead center -->
+            <text x="500" y="170" text-anchor="middle" font-family="Manrope, ui-sans-serif, sans-serif" font-size="20" font-weight="500" fill="#176B42">AI i hvelvet</text>
+            <line x1="430" y1="176" x2="570" y2="176" stroke="#2FB56A" stroke-width="1"/>
+            <text x="500" y="196" text-anchor="middle" font-family="Manrope, ui-sans-serif, sans-serif" font-size="13" font-weight="400" fill="#7E8B82">organiserer og henter ut</text>
+
+            <!-- key on the wall (right of vault) -->
+            <circle cx="720" cy="158" r="7" fill="none" stroke="#1B1D1A" stroke-width="1.25"/>
+            <line x1="727" y1="158" x2="752" y2="158" stroke="#1B1D1A" stroke-width="1.25"/>
+            <line x1="740" y1="158" x2="740" y2="163" stroke="#1B1D1A" stroke-width="1.25"/>
+            <line x1="748" y1="158" x2="748" y2="163" stroke="#1B1D1A" stroke-width="1.25"/>
+            <text x="736" y="188" text-anchor="middle" font-family="Manrope, ui-sans-serif, sans-serif" font-size="12" font-weight="500" fill="#7E8B82">Én nøkkel per hvelv</text>
+
+            <!-- support row under the box -->
+            <text x="500" y="310" text-anchor="middle" font-family="Manrope, ui-sans-serif, sans-serif" font-size="13" font-weight="400" fill="#7E8B82">AI-agent  ·  Delbare skills  ·  Data science  ·  Design  ·  Verktøy</text>
+
+            <!-- fact below -->
+            <text x="500" y="400" text-anchor="middle" font-family="Manrope, ui-sans-serif, sans-serif" font-size="14" font-weight="500" fill="#303630">Arbeidsgiver ser aldri identifiserbar helse.</text>
+          </svg>
         </div>
       </div>
     </section>

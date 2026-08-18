@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kin × Avonova · 18. august 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper: #FBF9F4;
+  --field: #F2EFE7;
+  --card: #FFFEFA;
+  --ink: #1B1D1A;
+  --body: #303630;
+  --mute: #7E8B82;
+  --line: #ECE8DD;
+  --accent: #2FB56A;
+  --accent-ink: #176B42;
+  --display: "Cormorant Garamond", "Times New Roman", Times, serif;
+  --sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  background: var(--paper);
+  color: var(--body);
+  font-family: var(--sans);
+  font-size: 16px;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: var(--field); color: var(--ink); }
+
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+
+.app {
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+body.on-dark {
+  background: var(--ink);
+  --chrome-line: #2A2C29;
+  --chrome-fg: #8A938C;
+  --chrome-mark: var(--paper);
+  --tab-hover: #242623;
+}
+
+:root, body {
+  --chrome-line: var(--line);
+  --chrome-fg: var(--mute);
+  --chrome-mark: var(--ink);
+  --tab-hover: var(--field);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 2rem;
+}
+.header-meta {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--chrome-fg);
+}
+.wordmark {
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.35rem;
+  color: var(--chrome-mark);
+  line-height: 1;
+}
+
+.tabs {
+  display: flex;
+  border-top: 1px solid var(--chrome-line);
+  border-bottom: 1px solid var(--chrome-line);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.tabs::-webkit-scrollbar { display: none; }
+.tab {
+  flex: 0 0 auto;
+  min-width: 4.4rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  padding: 0.78rem 0.65rem 0.7rem;
+  border-right: 1px solid var(--chrome-line);
+  color: var(--chrome-fg);
+  position: relative;
+}
+.tab:first-child { border-left: 1px solid var(--chrome-line); }
+.tab:hover { background: var(--tab-hover); color: var(--chrome-mark); }
+.tab.active { color: var(--accent-ink); }
+.tab.active::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -1px;
+  height: 2px;
+  background: var(--accent);
+}
+body.on-dark .tab.active { color: var(--accent); }
+.tab-num {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+}
+.tab-label {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(0.82rem, 1.05vw, 1.02rem);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.deck { position: relative; min-height: 0; cursor: e-resize; }
+.deck.is-west { cursor: w-resize; }
+
+.slide {
+  position: absolute;
+  inset: 0;
+  display: none;
+  background: var(--paper);
+  color: var(--body);
+}
+.slide.is-current { display: flex; }
+.slide.dark {
+  background: var(--ink);
+  color: #C4CBC4;
+}
+
+.slide-body {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: clamp(1.2rem, 3.6vh, 2.8rem) clamp(1.6rem, 4.5vw, 3.6rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100%;
+}
+
+.kicker {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mute);
+  margin-bottom: 1.2rem;
+}
+.slide.dark .kicker { color: #8A938C; }
+.kicker.ruled {
+  display: inline-block;
+  padding-bottom: 0.45rem;
+  border-bottom: 2px solid var(--accent);
+  margin-bottom: 1.5rem;
+  width: max-content;
+}
+
+.display {
+  font-family: var(--display);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  line-height: 1.05;
+  color: var(--ink);
+}
+.slide.dark .display { color: var(--paper); }
+
+.h-xl { font-size: clamp(56px, 7vw, 72px); max-width: 14ch; }
+.h-l  { font-size: clamp(44px, 5.2vw, 64px); max-width: 16ch; }
+.h-m  { font-size: clamp(36px, 4.2vw, 52px); max-width: 20ch; }
+.h-s  { font-size: clamp(28px, 3.2vw, 40px); max-width: 22ch; }
+
+.lede {
+  margin-top: 1.35rem;
+  font-size: 20px;
+  line-height: 1.4;
+  max-width: 42ch;
+  color: var(--body);
+}
+.slide.dark .lede { color: #D5D9D4; }
+
+.meet {
+  margin-top: 2.1rem;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+
+.note {
+  margin-top: 2rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--line);
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--body);
+  max-width: 42ch;
+}
+
+.mark {
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 0.04em;
+  color: inherit;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.7rem 2rem;
+  border-top: 1px solid var(--chrome-line);
+  font-size: 12px;
+  color: var(--chrome-fg);
+}
+.footer-left { letter-spacing: 0.04em; }
+.footer-right { display: flex; align-items: center; gap: 0.85rem; }
+.counter { font-variant-numeric: tabular-nums; font-weight: 500; }
+.nav-btn {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  color: var(--chrome-fg);
+  border: 1px solid var(--chrome-line);
+}
+.nav-btn:hover { color: var(--accent-ink); border-color: var(--accent); }
+.nav-btn:focus-visible,
+.tab:focus-visible { outline: 1px solid var(--accent); outline-offset: 2px; }
+
+/* Sverre — huge facts */
+.vita { margin-top: 1.6rem; max-width: 46rem; }
+.vita-row {
+  display: grid;
+  grid-template-columns: minmax(9.5rem, 0.38fr) 1fr;
+  gap: 1.4rem;
+  align-items: baseline;
+  padding: 0.72rem 0;
+  border-top: 1px solid var(--line);
+}
+.vita-row:last-child { border-bottom: 1px solid var(--line); }
+.vita-name {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(28px, 3.3vw, 40px);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--ink);
+}
+.vita-role {
+  font-size: 15px;
+  line-height: 1.35;
+  color: var(--body);
+}
+.vita-role small {
+  display: block;
+  margin-top: 0.12rem;
+  font-size: 13px;
+  color: var(--mute);
+}
+
+/* Klar — four lines */
+.ready {
+  list-style: none;
+  margin-top: 2rem;
+  max-width: 28rem;
+}
+.ready li {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(1.7rem, 3.2vw, 2.35rem);
+  letter-spacing: -0.015em;
+  line-height: 1.1;
+  color: var(--ink);
+  padding: 0.72rem 0;
+  border-top: 1px solid var(--line);
+}
+.ready li:last-child { border-bottom: 1px solid var(--line); }
+
+/* Abel figure */
+.abel {
+  display: grid;
+  grid-template-columns: auto minmax(3rem, 1fr) auto minmax(3rem, 1fr) auto;
+  align-items: center;
+  width: 100%;
+  margin-top: 3.2rem;
+}
+.abel-node {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(28px, 3.6vw, 44px);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.abel-nav {
+  grid-column: 3;
+  justify-self: center;
+  margin-top: 1.05rem;
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(18px, 2.1vw, 24px);
+  letter-spacing: -0.01em;
+  color: var(--body);
+  line-height: 1.2;
+}
+
+.arrow {
+  display: block;
+  height: 1px;
+  background: var(--ink);
+  margin: 0 1rem;
+  position: relative;
+}
+.arrow::after {
+  content: "";
+  position: absolute;
+  right: -1px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 2.5px 0 2.5px 5px;
+  border-color: transparent transparent transparent var(--ink);
+}
+
+/* Før / under / etter spine */
+.spine { margin-top: 3.4rem; width: 100%; }
+.spine-rail {
+  position: relative;
+  height: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.spine-rail::before {
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  top: 50%;
+  height: 1px;
+  background: var(--ink);
+}
+.tick {
+  position: relative;
+  z-index: 1;
+  width: 1px;
+  height: 12px;
+  background: var(--ink);
+}
+.spine-caps {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-top: 1.15rem;
+}
+.spine-caps > :nth-child(2) { text-align: center; }
+.spine-caps > :nth-child(3) { text-align: right; }
+.spine-h {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--body);
+  line-height: 1.2;
+}
+.spine-h.mark { display: inline; }
+.spine-b {
+  margin-top: 0.35rem;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--mute);
+}
+
+/* Inset frames */
+.slide-body.pair-body,
+.slide-body.shot-body {
+  max-width: 1220px;
+  justify-content: flex-start;
+  padding-top: clamp(0.7rem, 1.6vh, 1.2rem);
+  padding-bottom: 0.55rem;
+}
+.pair-body .display,
+.shot-body .display { max-width: 22ch; }
+.pair-body .kicker,
+.shot-body .kicker { margin-bottom: 0.7rem; }
+
+.pair {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.35rem;
+  margin-top: 1.05rem;
+  min-height: 0;
+}
+.pair .inset { display: flex; flex-direction: column; min-width: 0; }
+.pair .phone { flex: 0 0 auto; }
+.pair .wide { flex: 1 1 auto; }
+
+.mat {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  overflow: hidden;
+}
+.mat img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+}
+.pair .mat img {
+  height: calc(100vh - 292px);
+  max-height: 488px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: top center;
+}
+.caption {
+  margin-top: 0.7rem;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--mute);
+}
+
+.inset.solo { margin-top: 1rem; min-height: 0; }
+.inset.solo .mat img {
+  width: 100%;
+  height: calc(100vh - 318px);
+  max-height: 460px;
+  object-fit: contain;
+  object-position: top center;
+}
+
+/* Vault figure */
+.vault-fig {
+  margin-top: 2.4rem;
+  max-width: 36rem;
+}
+.vault-top,
+.vault-bot {
+  font-size: 18px;
+  line-height: 1.45;
+  color: var(--body);
+}
+.vault-mid {
+  margin: 1.15rem 0;
+  padding: 1.35rem 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.vault-k {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mute);
+  margin-bottom: 0.55rem;
+}
+.vault-t {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(36px, 4.4vw, 52px);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  color: var(--ink);
+}
+
+/* Routing figure */
+.route {
+  list-style: none;
+  margin-top: 2.2rem;
+  max-width: 28rem;
+}
+.route li {
+  display: grid;
+  grid-template-columns: 2.2rem 1fr;
+  gap: 1rem;
+  align-items: baseline;
+}
+.route .step-n {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--mute);
+  font-variant-numeric: tabular-nums;
+}
+.route-t {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(1.7rem, 3vw, 2.2rem);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--ink);
+}
+.v-arrow {
+  grid-column: 1;
+  justify-self: center;
+  width: 1px;
+  height: 1.45rem;
+  background: var(--ink);
+  margin: 0.35rem 0 0.2rem;
+  position: relative;
+}
+.v-arrow::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -1px;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 5px 2.5px 0 2.5px;
+  border-color: var(--ink) transparent transparent transparent;
+}
+
+/* Healable stepper — Kin chrome, no fake app bar */
+.demo { cursor: default; margin-top: 0.85rem; min-height: 0; }
+.demo-steps {
+  display: flex;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 0.95rem;
+}
+.demo-steps button {
+  display: flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  padding: 0.62rem 0.95rem 0.55rem;
+  border-right: 1px solid var(--line);
+  color: var(--mute);
+  position: relative;
+}
+.demo-steps button:first-child { padding-left: 0; }
+.demo-steps button:hover { color: var(--ink); }
+.demo-steps button.is-on { color: var(--accent-ink); }
+.demo-steps button.is-on::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -1px;
+  height: 2px;
+  background: var(--accent);
+}
+.demo-steps .n {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+.demo-steps .l {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 1.05rem;
+}
+.d-stage { min-height: 0; }
+.d-screen { display: none; }
+.d-screen.is-on { display: block; }
+.d-screen .mat img {
+  width: 100%;
+  height: calc(100vh - 360px);
+  max-height: 400px;
+  object-fit: contain;
+  object-position: top center;
+}
+
+/* Neste */
+.nexts {
+  list-style: none;
+  margin-top: 1.8rem;
+  max-width: 36rem;
+}
+.nexts li {
+  display: grid;
+  grid-template-columns: 2.2rem 1fr;
+  gap: 0.9rem;
+  padding: 0.78rem 0;
+  border-top: 1px solid var(--line);
+  align-items: baseline;
+}
+.nexts li:last-child { border-bottom: 1px solid var(--line); }
+.nexts .n {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--mute);
+}
+.nexts .t {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(1.45rem, 2.4vw, 1.85rem);
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  line-height: 1.15;
+}
+.sign { margin-top: 2.2rem; }
+.sign .who {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 1.7rem;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  line-height: 1.1;
+}
+.sign .them {
+  margin-top: 0.4rem;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--mute);
+}
+.sign .mail {
+  margin-top: 0.8rem;
+  font-size: 15px;
+  color: var(--body);
+}
+
+@media (max-width: 900px) {
+  .pair { flex-direction: column; }
+  .pair .mat img { height: auto; max-height: 42vh; width: 100%; }
+  .vita-row { grid-template-columns: 1fr; gap: 0.2rem; }
+  .tab-label { display: none; }
+  .tab { justify-content: center; min-width: 2.6rem; }
+  .abel { grid-template-columns: 1fr; row-gap: 0.55rem; }
+  .abel .arrow { display: none; }
+  .abel-nav { grid-column: 1; }
+  .demo-steps .l { display: none; }
+}
+
+@media print {
+  html, body { height: auto; background: #fff; }
+  body.on-dark { background: #fff; }
+  .app { display: block; height: auto; overflow: visible; }
+  .header, .tabs, .footer { display: none; }
+  .deck { position: static; }
+  .slide {
+    position: relative;
+    display: flex !important;
+    height: 100vh;
+    page-break-after: always;
+    break-after: page;
+  }
+  .slide:last-child { page-break-after: auto; }
+}
+</style>
+</head>
+<body class="on-dark">
+<div class="app">
+  <header class="header">
+    <p class="header-meta">18. august 2026 · video</p>
+    <p class="wordmark">Kin</p>
+  </header>
+
+  <nav class="tabs" aria-label="Lysbilder">
+    <button class="tab active" data-go="0" type="button"><span class="tab-num">01</span><span class="tab-label">Kin</span></button>
+    <button class="tab" data-go="1" type="button"><span class="tab-num">02</span><span class="tab-label">Sverre</span></button>
+    <button class="tab" data-go="2" type="button"><span class="tab-num">03</span><span class="tab-label">Klar</span></button>
+    <button class="tab" data-go="3" type="button"><span class="tab-num">04</span><span class="tab-label">Abel</span></button>
+    <button class="tab" data-go="4" type="button"><span class="tab-num">05</span><span class="tab-label">Etter</span></button>
+    <button class="tab" data-go="5" type="button"><span class="tab-num">06</span><span class="tab-label">Feelix</span></button>
+    <button class="tab" data-go="6" type="button"><span class="tab-num">07</span><span class="tab-label">Ygdra</span></button>
+    <button class="tab" data-go="7" type="button"><span class="tab-num">08</span><span class="tab-label">Hvelvet</span></button>
+    <button class="tab" data-go="8" type="button"><span class="tab-num">09</span><span class="tab-label">Healable</span></button>
+    <button class="tab" data-go="9" type="button"><span class="tab-num">10</span><span class="tab-label">Rute</span></button>
+    <button class="tab" data-go="10" type="button"><span class="tab-num">11</span><span class="tab-label">Neste</span></button>
+  </nav>
+
+  <main class="deck" id="deck">
+
+    <section class="slide dark is-current" data-i="0" id="s01">
+      <div class="slide-body">
+        <p class="kicker ruled">Kin</p>
+        <h1 class="display h-xl">Kin × Avonova</h1>
+        <p class="lede">Industrialisere <span class="mark">forebyggende</span> helse.</p>
+        <p class="meet">18. august 2026</p>
+      </div>
+    </section>
+
+    <section class="slide" data-i="1" id="s02">
+      <div class="slide-body">
+        <p class="kicker">Sverre Sundsdal</p>
+        <h1 class="display h-s">Bygget i skala. Nå i helse.</h1>
+        <div class="vita">
+          <div class="vita-row"><p class="vita-name">Google</p><p class="vita-role">Search Infrastructure</p></div>
+          <div class="vita-row"><p class="vita-name">Telenor</p><p class="vita-role">VP Engineering</p></div>
+          <div class="vita-row"><p class="vita-name">Schibsted</p><p class="vita-role">Director of Engineering</p></div>
+          <div class="vita-row"><p class="vita-name">Babylon</p><p class="vita-role">Head of AI Engineering<small>4 → 200 mennesker · 1 → 17 land</small></p></div>
+          <div class="vita-row"><p class="vita-name">Livv</p><p class="vita-role">Gründer og CEO · €1,4M<small>Lexolve · medgründer · legal AI</small></p></div>
+          <div class="vita-row"><p class="vita-name mark">Kin</p><p class="vita-role">Kin Health AS<small>NTNU Datateknikk</small></p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-i="2" id="s03">
+      <div class="slide-body">
+        <p class="kicker">Klar</p>
+        <h1 class="display h-m">Fire ting er på plass.</h1>
+        <ul class="ready">
+          <li>AI</li>
+          <li>Regelverk</li>
+          <li>Compliant software</li>
+          <li>Styre team</li>
+        </ul>
+        <p class="note">Jeg <span class="mark">industrialiserer</span> det Avonova allerede gjør.</p>
+      </div>
+    </section>
+
+    <section class="slide" data-i="3" id="s04">
+      <div class="slide-body">
+        <p class="kicker">Abel</p>
+        <h1 class="display h-m">Automatisere samarbeidet.</h1>
+        <p class="lede">Treningssenter og lege i ett løp.</p>
+        <div class="abel" role="img" aria-label="Trening og arena, via Kin, til lege og BHT. NAV-kontrakt.">
+          <p class="abel-node">Trening / arena</p>
+          <span class="arrow" aria-hidden="true"></span>
+          <p class="abel-node mark">Kin</p>
+          <span class="arrow" aria-hidden="true"></span>
+          <p class="abel-node">Lege / BHT</p>
+          <p class="abel-nav">NAV-kontrakt</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-i="4" id="s05">
+      <div class="slide-body">
+        <p class="kicker">Før · under · etter</p>
+        <h1 class="display h-m">Når du blir bedre, forsvinner du ikke.</h1>
+        <div class="spine" role="img" aria-label="Før, under, etter. Etter er nå.">
+          <div class="spine-rail">
+            <span class="tick"></span>
+            <span class="tick"></span>
+            <span class="tick"></span>
+          </div>
+          <div class="spine-caps">
+            <div>
+              <p class="spine-h">før</p>
+              <p class="spine-b">Du kommer inn</p>
+            </div>
+            <div>
+              <p class="spine-h">under</p>
+              <p class="spine-b">Trening og lege</p>
+            </div>
+            <div>
+              <p class="spine-h"><span class="mark">etter</span></p>
+              <p class="spine-b">Du blir værende</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-i="5" id="s06">
+      <div class="slide-body pair-body">
+        <p class="kicker">Feelix · klinikk vi bygger for</p>
+        <h1 class="display h-s">Trening og lege i samme reise.</h1>
+        <div class="pair">
+          <figure class="inset phone">
+            <div class="mat"><img src="shots/feelix/app-01-01-idag.png" alt=""></div>
+            <figcaption class="caption">Feelix · medlemsapp</figcaption>
+          </figure>
+          <figure class="inset wide">
+            <div class="mat"><img src="shots/feelix/dashboard-01-pasient-grid.png" alt=""></div>
+            <figcaption class="caption">Feelix · dashboard</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-i="6" id="s07">
+      <div class="slide-body pair-body">
+        <p class="kicker">Ygdra · klinikk-app på Kin</p>
+        <h1 class="display h-s">Pasient og klinikk ser det samme.</h1>
+        <div class="pair">
+          <figure class="inset phone">
+            <div class="mat"><img src="shots/ygdra/livsstil-01-app-profil.png" alt=""></div>
+            <figcaption class="caption">Ygdra · livsstil</figcaption>
+          </figure>
+          <figure class="inset wide">
+            <div class="mat"><img src="shots/ygdra/livsstil-04-dashboard.png" alt=""></div>
+            <figcaption class="caption">Ygdra · dashboard</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-i="7" id="s08">
+      <div class="slide-body">
+        <p class="kicker">Helsehvelvet</p>
+        <h1 class="display h-m">Et forseglet rom.</h1>
+        <div class="vault-fig">
+          <p class="vault-top">Pasienten eier data.</p>
+          <div class="vault-mid">
+            <p class="vault-k">inni</p>
+            <p class="vault-t"><span class="mark">AI</span> i hvelvet</p>
+          </div>
+          <p class="vault-bot">Arbeidsgiver ser aldri identifiserbar helse.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-i="8" id="s09">
+      <div class="slide-body shot-body">
+        <p class="kicker">Healable</p>
+        <h1 class="display h-s">Utkast, så signatur.</h1>
+        <p class="lede" style="margin-top:0.7rem;font-size:17px;max-width:48ch;">NAV-erklæring er use caset — ikke at Avonova bruker det.</p>
+        <div class="demo" id="demo">
+          <div class="demo-steps">
+            <button type="button" data-demo-go="0" class="is-on"><span class="n">01</span><span class="l">Hjem</span></button>
+            <button type="button" data-demo-go="1"><span class="n">02</span><span class="l">Erklæring</span></button>
+            <button type="button" data-demo-go="2"><span class="n">03</span><span class="l">Sikkerhet</span></button>
+          </div>
+          <div class="d-stage">
+            <figure class="inset d-screen is-on" data-demo="0">
+              <div class="mat"><img src="shots/healable-hjem.png" alt=""></div>
+              <figcaption class="caption">Healable · legeerklæring</figcaption>
+            </figure>
+            <figure class="inset d-screen" data-demo="1">
+              <div class="mat"><img src="shots/healable-legeerklaering.png" alt=""></div>
+              <figcaption class="caption">Healable · legeerklæring</figcaption>
+            </figure>
+            <figure class="inset d-screen" data-demo="2">
+              <div class="mat"><img src="shots/healable-sikkerhet.png" alt=""></div>
+              <figcaption class="caption">Healable · legeerklæring</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-i="9" id="s10">
+      <div class="slide-body">
+        <p class="kicker">Compliant AI</p>
+        <h1 class="display h-m">AI skriver utkast. Menneske signerer.</h1>
+        <ol class="route">
+          <li>
+            <span class="step-n">01</span>
+            <p class="route-t">Kartlegg</p>
+          </li>
+          <li class="v-arrow" aria-hidden="true"></li>
+          <li>
+            <span class="step-n">02</span>
+            <p class="route-t"><span class="mark">Rute</span></p>
+          </li>
+          <li class="v-arrow" aria-hidden="true"></li>
+          <li>
+            <span class="step-n">03</span>
+            <p class="route-t">Klinikk / arena</p>
+          </li>
+          <li class="v-arrow" aria-hidden="true"></li>
+          <li>
+            <span class="step-n">04</span>
+            <p class="route-t">Oppfølging</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="slide" data-i="10" id="s11">
+      <div class="slide-body">
+        <p class="kicker">Videre</p>
+        <h1 class="display h-m">Hva tar vi videre?</h1>
+        <ol class="nexts">
+          <li><span class="n">01</span><span class="t">Trening + lege</span></li>
+          <li><span class="n">02</span><span class="t">BHT + NAV</span></li>
+          <li><span class="n">03</span><span class="t">Rapporter</span></li>
+        </ol>
+        <div class="sign">
+          <p class="who">Sverre Sundsdal</p>
+          <p class="them">Martin Stensli Iversen · Øyvind Stokstad · 18. august</p>
+          <p class="mail">s@kinhelse.no</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p class="footer-left">Kin · Avonova</p>
+    <div class="footer-right">
+      <button class="nav-btn" type="button" data-step="-1" aria-label="Forrige">‹</button>
+      <span class="counter" id="counter">01 / 11</span>
+      <button class="nav-btn" type="button" data-step="1" aria-label="Neste">›</button>
+    </div>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var slides = Array.prototype.slice.call(document.querySelectorAll(".slide"));
+  var tabs = Array.prototype.slice.call(document.querySelectorAll(".tab"));
+  var counter = document.getElementById("counter");
+  var n = slides.length;
+  var i = 0;
+  var demoI = 0;
+  var DEMO = 8;
+
+  function pad(x) {
+    return String(x + 1).padStart(2, "0");
+  }
+
+  function paint() {
+    slides.forEach(function (s, idx) { s.classList.toggle("is-current", idx === i); });
+    tabs.forEach(function (t, idx) { t.classList.toggle("active", idx === i); });
+    document.body.classList.toggle("on-dark", slides[i].classList.contains("dark"));
+    counter.textContent = pad(i) + " / " + pad(n - 1);
+    var h = (i === DEMO) ? "#09-" + demoI : "#" + pad(i);
+    if (location.hash !== h) history.replaceState(null, "", h);
+  }
+
+  function go(next) {
+    if (next < 0) next = 0;
+    if (next > n - 1) next = n - 1;
+    i = next;
+    paint();
+  }
+
+  function fromHash() {
+    var raw = (location.hash || "").replace("#", "");
+    var parts = raw.split("-");
+    var num = parseInt(parts[0], 10);
+    if (num >= 1 && num <= n) go(num - 1);
+    else go(i);
+    if (parts[1] && window.__showDemo) window.__showDemo(parseInt(parts[1], 10));
+  }
+
+  document.addEventListener("keydown", function (e) {
+    if (e.defaultPrevented) return;
+    var k = e.key;
+    if (k === "ArrowRight" || k === "ArrowDown" || k === " " || k === "Spacebar" || k === "j") {
+      e.preventDefault();
+      if (i === DEMO && demoI < 2) showDemo(demoI + 1);
+      else go(i + 1);
+    } else if (k === "ArrowLeft" || k === "ArrowUp" || k === "k") {
+      e.preventDefault();
+      if (i === DEMO && demoI > 0) showDemo(demoI - 1);
+      else go(i - 1);
+    } else if (k === "Home") {
+      e.preventDefault();
+      go(0);
+    } else if (k === "End") {
+      e.preventDefault();
+      go(n - 1);
+    }
+  });
+
+  document.querySelectorAll("[data-go]").forEach(function (el) {
+    el.addEventListener("click", function (e) {
+      e.stopPropagation();
+      go(parseInt(el.getAttribute("data-go"), 10));
+    });
+  });
+
+  document.querySelectorAll("[data-step]").forEach(function (el) {
+    el.addEventListener("click", function (e) {
+      e.stopPropagation();
+      go(i + parseInt(el.getAttribute("data-step"), 10));
+    });
+  });
+
+  var deck = document.getElementById("deck");
+  deck.addEventListener("click", function (e) {
+    if (e.target.closest("a, button, .tab, .demo")) return;
+    var sel = window.getSelection && String(window.getSelection());
+    if (sel) return;
+    var r = deck.getBoundingClientRect();
+    if ((e.clientX - r.left) < r.width * 0.2) go(i - 1);
+    else go(i + 1);
+  });
+  deck.addEventListener("mousemove", function (e) {
+    var r = deck.getBoundingClientRect();
+    deck.classList.toggle("is-west", (e.clientX - r.left) < r.width * 0.2);
+  });
+
+  window.addEventListener("hashchange", fromHash);
+
+  var demo = document.getElementById("demo");
+  var screens = demo ? Array.prototype.slice.call(demo.querySelectorAll(".d-screen")) : [];
+  var steps = demo ? Array.prototype.slice.call(demo.querySelectorAll(".demo-steps [data-demo-go]")) : [];
+
+  function showDemo(n) {
+    if (!screens.length) return;
+    if (n < 0) n = 0;
+    if (n > screens.length - 1) n = screens.length - 1;
+    demoI = n;
+    screens.forEach(function (s, idx) { s.classList.toggle("is-on", idx === n); });
+    steps.forEach(function (b) { b.classList.toggle("is-on", parseInt(b.getAttribute("data-demo-go"), 10) === n); });
+    if (i === DEMO) {
+      var h = "#09-" + n;
+      if (location.hash !== h) history.replaceState(null, "", h);
+    }
+  }
+  window.__showDemo = showDemo;
+
+  if (demo) {
+    demo.addEventListener("click", function (e) {
+      e.stopPropagation();
+      var btn = e.target.closest("[data-demo-go]");
+      if (btn) {
+        showDemo(parseInt(btn.getAttribute("data-demo-go"), 10));
+        return;
+      }
+      var r = demo.getBoundingClientRect();
+      if ((e.clientX - r.left) < r.width * 0.2) {
+        if (demoI > 0) showDemo(demoI - 1);
+        else go(i - 1);
+      } else if (demoI < screens.length - 1) {
+        showDemo(demoI + 1);
+      } else {
+        go(i + 1);
+      }
+    });
+  }
+
+  fromHash();
+})();
+</script>
+</body>
+</html>

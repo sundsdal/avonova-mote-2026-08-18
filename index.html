@@ -558,12 +558,29 @@ body.on-dark .tab.active { color: var(--accent); }
   min-height: 0;
   margin-top: 0.4rem;
   display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 .vault-svg {
   width: 100%;
-  height: min(72vh, 640px);
+  height: min(60vh, 560px);
   display: block;
+}
+.vault-where {
+  margin-top: 1rem;
+  font-size: 15px;
+  font-weight: 500;
+  color: #303630;
+  text-align: center;
+}
+.vault-law {
+  margin-top: 0.2rem;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--mute);
+  text-align: center;
+  letter-spacing: 0.02em;
 }
 .vault-doc { opacity: 0; }
 #s08.is-current .vault-doc { animation: vault-doc-in 4.2s ease-in-out infinite; }
@@ -973,6 +990,8 @@ body.on-dark .tab.active { color: var(--accent); }
             </g>
             <text x="828" y="192" text-anchor="middle" font-family="Manrope, ui-sans-serif, system-ui, sans-serif" font-size="13" font-weight="500" fill="#7E8B82">Én nøkkel per hvelv</text>
           </svg>
+          <p class="vault-where">Kjører i Google Cloud, Frankfurt.</p>
+          <p class="vault-law">Normen · GDPR</p>
         </div>
       </div>
     </section>

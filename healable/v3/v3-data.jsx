@@ -122,4 +122,4 @@ const V3_FILES = {
     ex: { kind: 'transcript', dur: '4:12', lang: 'Norsk (bokmål)', segments: V3_TRANSCRIPT, chips: [['ok', 'mic', 'Transkribert automatisk'], ['', 'user', '2 talere']] } },
 };
 
-Object.assign(window, { V3_CHAT, V3_FILE, V3_MARKERS, V3_TREE, V3_LAB_ROWS, V3_REVIEW_DEFS, V3_FILES, V3_CSV_RAW, V3_DOC_V1, V3_DOC_V2, V3_BUILD, V3_FACTORS, V3_VAULTS, V3_VAULT_CHATS });
+Object.assign(window, { V3_CHAT, V3_TREE, V3_LAB_ROWS, V3_REVIEW_DEFS, V3_FILES, V3_CSV_RAW, V3_DOC_V1, V3_DOC_V2, V3_BUILD, V3_FACTORS, V3_VAULTS, V3_VAULT_CHATS });

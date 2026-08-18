@@ -26,44 +26,47 @@ a{color:var(--blue);text-decoration:none}a:hover{color:var(--blue-deep);text-dec
 </head>
 <body>
 <div id="root"></div>
-<div id="boot-err">Healable v3 lastet ikke. Sjekk at filene under healable/ er med.</div>
+<div id="boot-err">Healable v3 lastet ikke.</div>
+<script>window.__resources = window.__resources || { mark: 'assets/healable-mark.png' };</script>
+<script src="vendor/react.production.min.js"></script>
+<script src="vendor/react-dom.production.min.js"></script>
+<script src="parts.js"></script>
+<script src="screens/LabReport.js"></script>
+<script src="v3/v3-data.js"></script>
+<script src="v3/v3-extract.js"></script>
+<script src="v3/v3-chat.js"></script>
+<script src="v3/v3-rail.js"></script>
+<script src="v3/v3-preview.js"></script>
+<script src="v3/v3-lock.js"></script>
+<script src="v3/v3-studio.js"></script>
+<script src="v3/v3-app.js"></script>
 <script>
-  window.__resources = window.__resources || { mark: 'assets/healable-mark.png' };
-</script>
-<script src="vendor/react.development.js"></script>
-<script src="vendor/react-dom.development.js"></script>
-<script src="vendor/babel.min.js"></script>
-<script type="text/babel" src="parts.jsx"></script>
-<script type="text/babel" src="screens/LabReport.jsx"></script>
-<script type="text/babel" src="v3/v3-data.jsx"></script>
-<script type="text/babel" src="v3/v3-extract.jsx"></script>
-<script type="text/babel" src="v3/v3-chat.jsx"></script>
-<script type="text/babel" src="v3/v3-rail.jsx"></script>
-<script type="text/babel" src="v3/v3-preview.jsx"></script>
-<script type="text/babel" src="v3/v3-lock.jsx"></script>
-<script type="text/babel" src="v3/v3-studio.jsx"></script>
-<script type="text/babel" src="v3/v3-app.jsx"></script>
-<script type="text/babel">
-function Stage() {
-  return (
-    <div style={{ position: 'fixed', inset: 0 }}>
-      <window.V3App entry="Slippsoner først" lockVar="Modal" skillVar="Komponist-knapp" />
-    </div>
-  );
-}
-function boot(n) {
-  if (window.V3App && window.ReactDOM) {
-    window.ReactDOM.createRoot(document.getElementById('root')).render(<Stage />);
-    return;
+(function () {
+  function Stage() {
+    return React.createElement(
+      "div",
+      { style: { position: "fixed", inset: 0 } },
+      React.createElement(window.V3App, {
+        entry: "Slippsoner først",
+        lockVar: "Modal",
+        skillVar: "Komponist-knapp"
+      })
+    );
   }
-  if ((n || 0) > 80) {
-    var el = document.getElementById('boot-err');
-    if (el) el.style.display = 'grid';
-    return;
+  function boot(n) {
+    if (window.V3App && window.ReactDOM) {
+      window.ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(Stage));
+      return;
+    }
+    if ((n || 0) > 40) {
+      var el = document.getElementById("boot-err");
+      if (el) el.style.display = "grid";
+      return;
+    }
+    setTimeout(function () { boot((n || 0) + 1); }, 50);
   }
-  setTimeout(function () { boot((n || 0) + 1); }, 50);
-}
-boot(0);
+  boot(0);
+})();
 </script>
 </body>
 </html>

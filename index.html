@@ -926,7 +926,7 @@ body.on-dark .tab.active { color: var(--accent); }
     <section class="slide" data-i="8" id="s09">
       <div class="slide-body proto-body">
         <p class="kicker">Healable · v3</p>
-        <iframe class="proto-frame" src="healable/index.html" title="Healable v3" allow="microphone"></iframe>
+        <iframe class="proto-frame" src="healable/index.html" title="Healable v3" allow="microphone" tabindex="0"></iframe>
       </div>
     </section>
 
@@ -1006,6 +1006,8 @@ body.on-dark .tab.active { color: var(--accent); }
     counter.textContent = pad(i) + " / " + pad(n - 1);
     var h = "#" + pad(i);
     if (location.hash !== h) history.replaceState(null, "", h);
+    var frame = slides[i] && slides[i].querySelector("iframe.proto-frame");
+    if (frame) setTimeout(function () { try { frame.focus(); } catch (err) {} }, 0);
   }
 
   function go(next) {
@@ -1025,6 +1027,8 @@ body.on-dark .tab.active { color: var(--accent); }
 
   document.addEventListener("keydown", function (e) {
     if (e.defaultPrevented) return;
+    var proto = slides[i] && slides[i].querySelector("iframe.proto-frame");
+    if (proto && e.key !== "Escape") return;
     var k = e.key;
     if (k === "ArrowRight" || k === "ArrowDown" || k === " " || k === "Spacebar" || k === "j") {
       e.preventDefault();

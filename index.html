@@ -371,34 +371,45 @@ body.on-dark .tab.active { color: var(--accent); }
 }
 .ready li:last-child { border-bottom: 1px solid var(--line); }
 
-/* Abel figure */
-.abel {
-  display: grid;
-  grid-template-columns: auto minmax(3rem, 1fr) auto minmax(3rem, 1fr) auto;
-  align-items: center;
-  width: 100%;
-  margin-top: 3.2rem;
+/* Abel — collaboration web */
+.web {
+  position: relative;
+  width: min(100%, 40rem);
+  aspect-ratio: 1.28 / 1;
+  margin: 1.2rem auto 0;
 }
-.abel-node {
+.web svg {
+  position: absolute;
+  inset: 18% 14% 16%;
+  overflow: visible;
+}
+.web-kin {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-family: var(--display);
   font-weight: 500;
-  font-size: clamp(28px, 3.6vw, 44px);
+  font-size: clamp(34px, 4.2vw, 48px);
   letter-spacing: -0.02em;
-  line-height: 1.05;
+  line-height: 1;
+  color: var(--ink);
+}
+.web-n {
+  position: absolute;
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(22px, 2.8vw, 32px);
+  letter-spacing: -0.02em;
+  line-height: 1;
   color: var(--ink);
   white-space: nowrap;
 }
-.abel-nav {
-  grid-column: 3;
-  justify-self: center;
-  margin-top: 1.05rem;
-  font-family: var(--display);
-  font-weight: 500;
-  font-size: clamp(18px, 2.1vw, 24px);
-  letter-spacing: -0.01em;
-  color: var(--body);
-  line-height: 1.2;
-}
+.web-trening { top: 0; left: 50%; transform: translateX(-50%); }
+.web-lege { top: 28%; right: 0; }
+.web-bht { bottom: 2%; right: 10%; }
+.web-fors { bottom: 2%; left: 6%; }
+.web-nav { top: 28%; left: 0; }
 
 .arrow {
   display: block;
@@ -712,9 +723,7 @@ body.on-dark .tab.active { color: var(--accent); }
   .vita-row { grid-template-columns: 1fr; gap: 0.2rem; }
   .tab-label { display: none; }
   .tab { justify-content: center; min-width: 2.6rem; }
-  .abel { grid-template-columns: 1fr; row-gap: 0.55rem; }
-  .abel .arrow { display: none; }
-  .abel-nav { grid-column: 1; }
+  .web { max-width: 22rem; }
   .demo-steps .l { display: none; }
 }
 
@@ -802,15 +811,23 @@ body.on-dark .tab.active { color: var(--accent); }
     <section class="slide" data-i="3" id="s04">
       <div class="slide-body">
         <p class="kicker">Abel</p>
-        <h1 class="display h-m">Automatisere samarbeidet.</h1>
-        <p class="lede">Treningssenter og lege i ett løp.</p>
-        <div class="abel" role="img" aria-label="Trening og arena, via Kin, til lege og BHT. NAV-kontrakt.">
-          <p class="abel-node">Trening / arena</p>
-          <span class="arrow" aria-hidden="true"></span>
-          <p class="abel-node mark">Kin</p>
-          <span class="arrow" aria-hidden="true"></span>
-          <p class="abel-node">Lege / BHT</p>
-          <p class="abel-nav">NAV-kontrakt</p>
+        <h1 class="display h-s">Automatisere samarbeidet.</h1>
+        <p class="lede">Fem parter. Ett løp.</p>
+        <div class="web" role="img" aria-label="Kin i midten. Rundt: trening, lege, BHT, forsikring og NAV.">
+          <svg viewBox="0 0 100 100" fill="none" aria-hidden="true">
+            <polygon points="50,8 88,38 74,84 26,84 12,38" stroke="#ECE8DD" stroke-width="0.7"/>
+            <line x1="50" y1="50" x2="50" y2="8" stroke="#2FB56A" stroke-width="1.15"/>
+            <line x1="50" y1="50" x2="88" y2="38" stroke="#ECE8DD" stroke-width="0.7"/>
+            <line x1="50" y1="50" x2="74" y2="84" stroke="#ECE8DD" stroke-width="0.7"/>
+            <line x1="50" y1="50" x2="26" y2="84" stroke="#ECE8DD" stroke-width="0.7"/>
+            <line x1="50" y1="50" x2="12" y2="38" stroke="#ECE8DD" stroke-width="0.7"/>
+          </svg>
+          <p class="web-kin mark">Kin</p>
+          <p class="web-n web-trening">Trening</p>
+          <p class="web-n web-lege">Lege</p>
+          <p class="web-n web-bht">BHT</p>
+          <p class="web-n web-fors">Forsikring</p>
+          <p class="web-n web-nav">NAV</p>
         </div>
       </div>
     </section>

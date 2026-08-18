@@ -1,0 +1,288 @@
+/* Healable — v2.1 clinical-modernism token+primitive layer for the v2 prototype.
+   Same .hbl class + variable surface as healable.css so every screen inherits it,
+   but every value is remapped to the current Healable Design System (sharpened
+   shadcn): cooler warm-neutral ground, tight 4–12px corners, solid warm-grey
+   borders, flat slate-blue accent, restrained elevation with NO inset highlight,
+   flat clinical states. Only this prototype links this file. */
+
+.hbl, .hbl * { box-sizing: border-box; }
+
+.hbl {
+  /* ── Surfaces — soft warm-neutral ground, warm off-white cards ── */
+  --oat:      #FAF9F6;   /* app ground — near-white, shadcn background */
+  --oat-2:    #F4F2ED;
+  --paper:    #FFFFFF;   /* primary card / panel — white, shadcn card */
+  --paper-2:  #F4F2EC;   /* recessed / muted fill */
+  --paper-3:  #FAF8F4;
+
+  /* ── Ink (warm near-black + muted browns) ── */
+  --ink:      #23201C;
+  --ink-80:   #45403A;
+  --ink-60:   #726B62;
+  --ink-45:   #9A938A;
+  --ink-30:   #BEB8AD;
+  /* Borders — solid warm greys (the shadcn look), not translucent ── */
+  --line:     #E8E5DD;
+  --line-2:   #F0EEE7;
+  --hair:     #F2F0EA;
+  --input:    #DFDBD2;
+
+  /* ── Accents (sparing): slate blue → orchid → coral ── */
+  --blue:      #3D5375;
+  --blue-deep: #34496A;
+  --blue-12:   rgba(61,83,117,0.12);
+  --blue-08:   rgba(61,83,117,0.08);
+  --orchid:    #A862D4;
+  --orchid-12: rgba(168,98,212,0.12);
+  --coral:     #E8664C;
+  --coral-12:  rgba(232,102,76,0.12);
+  /* document accent — deep splash-coral (was gold) */
+  --doc:       #C05430;
+  --doc-12:    rgba(224,106,68,0.13);
+
+  /* ── Clinical states — meaning only, flat ── */
+  --ok:       #2E9C72;
+  --ok-12:    rgba(46,156,114,0.12);
+  --warn:     #C6881F;
+  --warn-14:  rgba(198,136,31,0.14);
+  --alert:    #C0402C;
+  --alert-12: rgba(192,64,44,0.12);
+
+  /* ── Brand gradient — identity moments only ── */
+  --brand-gradient: linear-gradient(100deg, #FF8E63 0%, #FF5FA8 50%, #4B73FF 100%);
+
+  /* ── Brand field — Lovable colour-field for the logo tile ── */
+  --brand-field:
+    radial-gradient(circle at 28% 78%, #4B73FF 0%, transparent 58%),
+    radial-gradient(circle at 68% 18%, #FF0105 0%, transparent 55%),
+    radial-gradient(circle at 82% 58%, #FE7B02 0%, transparent 52%),
+    radial-gradient(circle at 42% 32%, #FF66F4 0%, transparent 58%),
+    #FF7EB0;
+
+  /* ── Radii — crisp shadcn scale, 6–8px does most of the work ── */
+  --r-sm: 4px; --r-md: 6px; --r-lg: 8px; --r-xl: 10px; --r-2xl: 12px;
+
+  /* ── Warm three-tier elevation — NO inset highlight, restrained ── */
+  --e1: 0 1px 2px rgba(58,42,30,0.05);
+  --e2: 0 1px 2px rgba(58,42,30,0.05), 0 4px 12px -6px rgba(58,42,30,0.10);
+  --e3: 0 2px 4px rgba(58,42,30,0.06), 0 12px 28px -14px rgba(58,42,30,0.16);
+
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  color: var(--ink);
+  background: var(--oat);
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: 'ss01';
+  width: 100%; height: 100%;
+  position: relative;
+}
+
+/* ── Typography ── */
+.hbl-display { font-family: 'Space Grotesk', sans-serif; font-weight: 500; letter-spacing: -0.02em; color: var(--ink); }
+.hbl-num     { font-family: 'Space Grotesk', sans-serif; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+.hbl-micro {
+  font-family: 'Manrope', sans-serif; font-weight: 700;
+  font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-45);
+}
+.hbl-dim { color: var(--ink-60); }
+.hbl-faint { color: var(--ink-45); }
+
+/* ── Buttons — no pills, crisp corners, flat fills, darken on hover ── */
+.hbl-btn {
+  display: inline-flex; align-items: center; gap: 9px; justify-content: center;
+  font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 14.5px;
+  border: none; cursor: pointer; border-radius: var(--r-lg);
+  padding: 11px 18px; transition: background .16s ease, color .16s ease, box-shadow .16s ease, border-color .16s ease; white-space: nowrap;
+  color: var(--ink); background: transparent;
+}
+.hbl-btn svg { width: 17px; height: 17px; flex: 0 0 auto; }
+.hbl-btn--primary {
+  background: var(--blue);
+  color: #FBFAF7; box-shadow: var(--e1);
+}
+.hbl-btn--primary:hover { background: var(--blue-deep); }
+.hbl-btn--ghost {
+  background: var(--paper); color: var(--ink-80);
+  box-shadow: var(--e1); border: 1px solid var(--line);
+}
+.hbl-btn--ghost:hover { background: var(--paper-2); }
+.hbl-btn--soft { background: var(--blue-12); color: var(--blue-deep); }
+.hbl-btn--soft:hover { background: rgba(61,83,117,0.18); }
+.hbl-btn--sm { padding: 7px 13px; font-size: 13px; gap: 6px; border-radius: var(--r-md); }
+.hbl-btn--lg { padding: 14px 24px; font-size: 15.5px; }
+.hbl-btn--block { width: 100%; }
+
+/* ── Chips ── */
+.hbl-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 12.5px;
+  padding: 4px 11px; border-radius: var(--r-md); white-space: nowrap;
+  background: var(--paper-2); color: var(--ink-60); border: 1px solid var(--line-2);
+}
+.hbl-chip svg { width: 13px; height: 13px; }
+.hbl-chip--blue   { background: var(--blue-12);   color: var(--blue-deep); border-color: transparent; }
+.hbl-chip--orchid { background: var(--orchid-12); color: #8C45BC; border-color: transparent; }
+.hbl-chip--ok     { background: var(--ok-12);     color: #1F7E59; border-color: transparent; }
+.hbl-chip--warn   { background: var(--warn-14);   color: #8F620F; border-color: transparent; }
+.hbl-chip--alert  { background: var(--alert-12);  color: #A5321F; border-color: transparent; }
+.hbl-chip--dot::before { content:''; width:6px; height:6px; border-radius:50%; background: currentColor; opacity: .9; }
+
+/* status dot */
+.hbl-dot { width: 7px; height: 7px; border-radius: 50%; display: inline-block; }
+
+/* ── Cards / panels — solid hairline border, faint drop shadow ── */
+.hbl-card  { background: var(--paper); border-radius: var(--r-lg); box-shadow: var(--e2); border: 1px solid var(--line); }
+.hbl-panel { background: var(--paper); border-radius: var(--r-md); border: 1px solid var(--line); }
+.hbl-inset { background: var(--paper-2); border-radius: var(--r-md); border: 1px solid var(--hair); }
+
+/* ── Inputs — slightly stronger border, crisp corners ── */
+.hbl-input {
+  width: 100%; font-family: 'Manrope', sans-serif; font-size: 15px; color: var(--ink);
+  background: var(--paper); border: 1px solid var(--input); border-radius: var(--r-lg);
+  padding: 12px 16px; outline: none;
+}
+.hbl-input::placeholder { color: var(--ink-45); }
+.hbl-input:focus, .hbl-input:focus-within { border-color: var(--blue); box-shadow: 0 0 0 3px var(--blue-12); }
+.hbl-btn:focus-visible, .hbl-modetab:focus-visible, .hbl-seg button:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+.hbl-search { display: flex; align-items: center; gap: 11px; }
+.hbl-search svg { width: 18px; height: 18px; color: var(--ink-45); flex: 0 0 auto; }
+
+/* ── Brand mark ── */
+.hbl-mark { width: 34px; height: 34px; border-radius: var(--r-lg); display: grid; place-items: center;
+  background: var(--brand-field); box-shadow: var(--e1); flex: 0 0 auto; overflow: hidden; }
+.hbl-mark img { width: 24px; height: 24px; display: block; }
+.hbl-wordmark { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 21px; letter-spacing: -0.02em; color: var(--ink); }
+
+/* ── Workspace chrome (top bar + mode tabs) ── */
+.hbl-topbar {
+  display: flex; align-items: center; gap: 16px;
+  padding: 14px 22px; background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(16px); border-bottom: 1px solid var(--line);
+  position: relative; z-index: 40;
+}
+.hbl-topdiv { width: 1px; height: 26px; background: var(--line); }
+.hbl-modetabs { display: inline-flex; gap: 4px; padding: 4px; background: var(--paper-2); border-radius: var(--r-xl); border: 1px solid var(--hair); }
+.hbl-modetab {
+  display: inline-flex; align-items: center; gap: 7px; padding: 8px 16px; border-radius: var(--r-md);
+  font-family: 'Manrope'; font-weight: 600; font-size: 13.5px; color: var(--ink-60); cursor: pointer; border: none; background: transparent; transition: all .15s;
+}
+.hbl-modetab svg { width: 16px; height: 16px; }
+.hbl-modetab--active { background: var(--paper); color: var(--ink); box-shadow: inset 0 0 0 1px var(--line), var(--e1); }
+.hbl-modetab--locked { color: var(--ink-30); cursor: default; }
+.hbl-modetab--locked:hover { color: var(--ink-45); }
+
+/* ── segmented toggle (Rå PDF / Uttrekt data) ── */
+.hbl-seg { display: inline-flex; gap: 3px; padding: 3px; background: var(--paper-2); border-radius: var(--r-lg); border: 1px solid var(--hair); }
+.hbl-seg button {
+  display: inline-flex; align-items: center; gap: 7px; padding: 7px 14px; border-radius: var(--r-md);
+  font-family: 'Manrope'; font-weight: 600; font-size: 13px; color: var(--ink-60); cursor: pointer; border: none; background: transparent; transition: all .15s; white-space: nowrap;
+}
+.hbl-seg button svg { width: 15px; height: 15px; }
+.hbl-seg button.is-active { background: var(--paper); color: var(--ink); box-shadow: inset 0 0 0 1px var(--line), var(--e1); }
+.hbl-seg button:disabled { color: var(--ink-30); cursor: not-allowed; }
+
+/* ── tiny toggle switch — flat state fill ── */
+.hbl-switch { width: 46px; height: 27px; border-radius: 999px; border: none; cursor: pointer; padding: 3px; display: inline-flex; transition: background .18s ease; background: var(--ink-30); }
+.hbl-switch.on { background: var(--ok); }
+.hbl-switch > span { width: 21px; height: 21px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.25); transition: transform .18s ease; }
+.hbl-switch.on > span { transform: translateX(19px); }
+
+/* ── Security list ── */
+.hbl-seclist { display: flex; flex-direction: column; gap: 16px; }
+.hbl-secitem { display: flex; gap: 13px; align-items: flex-start; }
+.hbl-secicon { width: 30px; height: 30px; border-radius: var(--r-md); display: grid; place-items: center; background: var(--paper-2); color: var(--blue); flex: 0 0 auto; }
+.hbl-secicon svg { width: 16px; height: 16px; }
+.hbl-sectitle { font-weight: 600; font-size: 14px; color: var(--ink); line-height: 1.3; }
+.hbl-secsub { font-size: 12.5px; color: var(--ink-45); }
+
+/* ── Scrollless utility ── */
+.hbl-clip { overflow: hidden; }
+
+/* ── Rule / divider ── */
+.hbl-rule { height: 1px; background: var(--line); border: 0; margin: 0; }
+
+/* ── Confidence / range mini-legend ── */
+.hbl-legend { display: flex; align-items: center; gap: 18px; }
+.hbl-legend-item { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--ink-60); font-weight: 500; }
+.hbl-swatch { width: 16px; height: 9px; border-radius: 3px; }
+
+/* ── Prototype: clickable list rows ── */
+.hbl-rowlink { cursor: pointer; transition: background .14s ease; }
+.hbl-rowlink:hover { background: var(--blue-08) !important; }
+
+/* ── Studio primary tabs (Rapport · Organiser) ── */
+.hbl-studiotab {
+  display: inline-flex; align-items: center; gap: 8px; padding: 9px 20px; border-radius: var(--r-md);
+  font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 14px; color: var(--ink-60);
+  cursor: pointer; border: none; background: transparent; transition: all .15s;
+}
+.hbl-studiotab svg { width: 16px; height: 16px; }
+.hbl-studiotab--active,
+.hbl-seg .hbl-studiotab--active { background: var(--paper); color: var(--ink); box-shadow: var(--e1); border: 1px solid var(--line-2); }
+
+/* ── Account dropdown menu items ── */
+.hbl-menuitem {
+  display: flex; align-items: center; gap: 11px; width: 100%; box-sizing: border-box;
+  padding: 9px 11px; border-radius: var(--r-md); border: none; background: transparent; cursor: pointer;
+  font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 13.5px; color: var(--ink-80);
+  text-align: left; transition: background .13s ease, color .13s ease;
+}
+.hbl-menuitem:hover { background: var(--paper-2); color: var(--ink); }
+.hbl-menuitem svg { color: var(--ink-45); }
+.hbl-menuitem:hover svg { color: var(--ink-60); }
+.hbl-menuitem--alert { color: #A5321F; }
+.hbl-menuitem--alert svg { color: var(--alert); }
+.hbl-menuitem--alert:hover { background: var(--alert-12); color: #A5321F; }
+.hbl-menuitem--alert:hover svg { color: var(--alert); }
+
+/* ── Modal (kit picker) ── */
+@keyframes hblFade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes hblPop  { from { opacity: 0; transform: translateY(10px) scale(0.985); } to { opacity: 1; transform: none; } }
+.hbl-kitrow:hover { border-color: var(--line) !important; }
+.hbl-kitrow--on:hover { border-color: var(--blue) !important; }
+
+/* ── Clarification option rows (report interview) ── */
+.hbl-optrow { transition: border-color .14s ease, background .14s ease, transform .14s ease; }
+.hbl-optrow:hover { border-color: var(--doc) !important; background: var(--paper) !important; transform: translateX(2px); }
+.hbl-optrow:hover .hbl-optrow__go { color: var(--doc) !important; }
+
+/* ── Tool-call disclosure (Claude-style: muted summary + chevron, expandable) ── */
+.hbl-toolcall { transition: background .14s ease; }
+.hbl-toolcall:hover { background: var(--paper-2); }
+.hbl-toolcall:hover .hbl-tc-label { color: var(--ink-60); }
+.hbl-toolcall:hover .hbl-tc-chev  { color: var(--ink-45); }
+.hbl-tc-label, .hbl-tc-chev { transition: color .14s ease; }
+
+/* ── Animations ── */
+@keyframes hblSlideIn { from { transform: translateX(28px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+@keyframes hblSpin { to { transform: rotate(360deg); } }
+@keyframes hblFadeUp { from { transform: translateY(8px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+.hbl-spin { animation: hblSpin .9s linear infinite; transform-origin: center; }
+
+/* ── Samtale (chat) — recording + suggestions ── */
+@keyframes hblRecPulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.35; transform: scale(0.82); } }
+.hbl-recdot { animation: hblRecPulse 1.1s ease-in-out infinite; }
+@keyframes hblWave { 0%,100% { transform: scaleY(0.28); } 50% { transform: scaleY(1); } }
+.hbl-wavebar { height: 100%; transform-origin: center; animation: hblWave .9s ease-in-out infinite; }
+.hbl-chip-btn { transition: background .14s ease, border-color .14s ease, transform .12s ease; }
+.hbl-chip-btn:hover { border-color: var(--line) !important; transform: translateY(-1px); }
+
+/* ── Organiser — calmer, more muted palette + sharper edges (scoped) ── */
+.hbl-organiser {
+  --alert:    #B04A38;  --alert-12: rgba(176,74,56,0.12);
+  --ok:       #4F8A6C;  --ok-12:    rgba(79,138,108,0.12);
+  --warn:     #A8843C;  --warn-14:  rgba(168,132,60,0.13);
+  --orchid:   #8E76A8;  --orchid-12: rgba(142,118,168,0.12);
+}
+.hbl-organiser .hbl-chip--alert  { color: #9E5A47; }
+.hbl-organiser .hbl-chip--ok     { color: #3F7359; }
+.hbl-organiser .hbl-chip--warn   { color: #876A2F; }
+.hbl-organiser .hbl-chip--orchid { color: #75618C; }
+.hbl-organiser .hbl-card   { border-radius: var(--r-lg); }
+.hbl-organiser .hbl-panel  { border-radius: var(--r-md); }
+.hbl-organiser .hbl-inset  { border-radius: var(--r-md); }
+.hbl-organiser .hbl-input  { border-radius: var(--r-md); }
+.hbl-organiser .hbl-toolcall { border-radius: var(--r-sm); }
+.hbl-organiser .hbl-modetab { border-radius: var(--r-md); }

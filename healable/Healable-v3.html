@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Healable v3 — samtale først</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="healable-ds.css" />
+<meta name="ext-resource-dependency" content="assets/healable-mark.png" data-resource-id="mark" />
+<style>
+html,body{margin:0;padding:0;background:#F3F1EC}*{-webkit-font-smoothing:antialiased}
+.hbl{--blue:#4665D8;--blue-deep:#3A55C2;--blue-12:rgba(70,101,216,0.12);--blue-08:rgba(70,101,216,0.07)}
+.hbl-v3drop{background:var(--paper-3);border:1.5px dashed var(--line);border-radius:16px;transition:background .16s,border-color .16s,box-shadow .16s}
+.hbl-v3drop:hover{background:var(--paper);border-color:var(--blue);box-shadow:var(--e2)}
+.hbl-v3row{transition:background .13s ease}.hbl-v3row:hover{background:var(--paper-2)}
+.hbl-v3act{display:grid;place-items:center;width:26px;height:26px;border-radius:8px;border:1px solid transparent;background:transparent;color:var(--ink-30);cursor:pointer;opacity:0;transition:opacity .13s ease,background .13s ease,color .13s ease}
+.hbl-v3row:hover .hbl-v3act{opacity:1}.hbl-v3act:hover{background:var(--paper);border-color:var(--line-2);color:var(--ink-80)}
+.hbl-v3act--alert:hover{color:#A5321F;border-color:rgba(192,64,44,0.3);background:var(--alert-12)}
+@keyframes hblFlip{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:none}}
+.hbl-v3seg button{padding:5px 10px;font-size:11.5px}.hbl-v3seg button svg{width:14px;height:14px}
+a{color:var(--blue);text-decoration:none}a:hover{color:var(--blue-deep);text-decoration:underline}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<template id="__bundler_thumbnail" data-bg-color="#E0D9C8">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <defs><linearGradient id="hx3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7D7BE8" /><stop offset="0.5" stop-color="#34B27B" /><stop offset="1" stop-color="#C77DD6" /></linearGradient></defs>
+    <rect x="330" y="250" width="540" height="330" rx="26" fill="#FBF8F0" stroke="#D8CBB6" stroke-width="4" />
+    <g transform="translate(600,372)" stroke="url(#hx3)" stroke-width="34" stroke-linecap="round" fill="none"><path d="M-52 -52 L52 52" /><path d="M52 -52 L-52 52" /></g>
+    <text x="600" y="648" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-size="58" font-weight="600" fill="#231916" letter-spacing="-1">Healable v3</text>
+  </svg>
+</template>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin="anonymous"></script>
+<script type="module" src="preview.jsx"></script>
+</body>
+</html>

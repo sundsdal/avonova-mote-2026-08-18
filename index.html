@@ -592,7 +592,7 @@ body.on-dark .tab.active { color: var(--accent); }
 }
 
 /* Vault figure — sealed box fills the slide */
-#s08 .slide-body {
+#s05 .slide-body {
   justify-content: flex-start;
   padding-top: clamp(0.8rem, 2.4vh, 1.6rem);
 }
@@ -608,9 +608,61 @@ body.on-dark .tab.active { color: var(--accent); }
 }
 .vault-svg {
   width: 100%;
-  height: min(60vh, 560px);
+  height: min(46vh, 420px);
   display: block;
 }
+
+.consent-lid {
+  position: relative;
+  z-index: 2;
+  width: min(52%, 28rem);
+  margin: 0 auto -0.4rem;
+  background: #FFFEFA;
+  border: 2px solid #1B1D1A;
+  border-radius: 8px;
+  padding: 0.65rem 0.9rem 0.75rem;
+  text-align: center;
+}
+.consent-lid-k {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mute);
+  margin-bottom: 0.45rem;
+}
+.consent-lid-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.3rem;
+}
+.cf {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.32rem;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 0.22rem 0.5rem;
+  border-radius: 3px;
+}
+.cf i {
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+.cf.on { background: #E4F4EA; color: #176B42; }
+.cf.on i { background: #2FB56A; }
+.cf.off { background: #F2EFE7; color: #7E8B82; }
+.cf.off i { background: #C8C4B8; }
+.consent-line {
+  margin-top: 0.5rem;
+  font-size: 14px;
+  font-weight: 500;
+  color: #176B42;
+}
+
 .vault-where {
   margin-top: 1rem;
   font-size: 15px;
@@ -627,11 +679,11 @@ body.on-dark .tab.active { color: var(--accent); }
   letter-spacing: 0.02em;
 }
 .vault-doc { opacity: 0; }
-#s08.is-current .vault-doc { animation: vault-doc-in 4.2s ease-in-out infinite; }
-#s08.is-current .vault-doc.d2 { animation-delay: .35s; }
-#s08.is-current .vault-doc.d3 { animation-delay: .7s; }
-#s08.is-current .vault-doc.d4 { animation-delay: 1.05s; }
-#s08.is-current .vault-doc.d5 { animation-delay: 1.4s; }
+#s05.is-current .vault-doc { animation: vault-doc-in 4.2s ease-in-out infinite; }
+#s05.is-current .vault-doc.d2 { animation-delay: .35s; }
+#s05.is-current .vault-doc.d3 { animation-delay: .7s; }
+#s05.is-current .vault-doc.d4 { animation-delay: 1.05s; }
+#s05.is-current .vault-doc.d5 { animation-delay: 1.4s; }
 @keyframes vault-doc-in {
   0% { transform: translateX(-36px); opacity: 0; }
   16% { opacity: 1; }
@@ -639,7 +691,7 @@ body.on-dark .tab.active { color: var(--accent); }
   100% { transform: translateX(150px); opacity: 0; }
 }
 @media (prefers-reduced-motion: reduce) {
-  #s08.is-current .vault-doc { animation: none; opacity: 1; transform: none; }
+  #s05.is-current .vault-doc { animation: none; opacity: 1; transform: none; }
 }
 
 /* Routing figure */
@@ -797,10 +849,10 @@ body.on-dark .tab.active { color: var(--accent); }
     <button class="tab" data-go="1" type="button"><span class="tab-num">02</span><span class="tab-label">Sverre</span></button>
     <button class="tab" data-go="2" type="button"><span class="tab-num">03</span><span class="tab-label">Klar</span></button>
     <button class="tab" data-go="3" type="button"><span class="tab-num">04</span><span class="tab-label">Samarbeid</span></button>
-    <button class="tab" data-go="4" type="button"><span class="tab-num">05</span><span class="tab-label">Etter</span></button>
-    <button class="tab" data-go="5" type="button"><span class="tab-num">06</span><span class="tab-label">Klinikk 1</span></button>
-    <button class="tab" data-go="6" type="button"><span class="tab-num">07</span><span class="tab-label">Klinikk 2</span></button>
-    <button class="tab" data-go="7" type="button"><span class="tab-num">08</span><span class="tab-label">Hvelvet</span></button>
+    <button class="tab" data-go="4" type="button"><span class="tab-num">05</span><span class="tab-label">Hvelvet</span></button>
+    <button class="tab" data-go="5" type="button"><span class="tab-num">06</span><span class="tab-label">Etter</span></button>
+    <button class="tab" data-go="6" type="button"><span class="tab-num">07</span><span class="tab-label">Klinikk 1</span></button>
+    <button class="tab" data-go="7" type="button"><span class="tab-num">08</span><span class="tab-label">Klinikk 2</span></button>
     <button class="tab" data-go="8" type="button"><span class="tab-num">09</span><span class="tab-label">Healable</span></button>
     <button class="tab" data-go="9" type="button"><span class="tab-num">10</span><span class="tab-label">Rute</span></button>
     <button class="tab" data-go="10" type="button"><span class="tab-num">11</span><span class="tab-label">Neste</span></button>
@@ -915,70 +967,19 @@ body.on-dark .tab.active { color: var(--accent); }
 
     <section class="slide" data-i="4" id="s05">
       <div class="slide-body">
-        <p class="kicker">Før · under · etter</p>
-        <h1 class="display h-m">Når du blir bedre, forsvinner du ikke.</h1>
-        <div class="spine" role="img" aria-label="Før, under, etter. Etter er nå.">
-          <div class="spine-rail">
-            <span class="tick"></span>
-            <span class="tick"></span>
-            <span class="tick"></span>
-          </div>
-          <div class="spine-caps">
-            <div>
-              <p class="spine-h">før</p>
-              <p class="spine-b">Du kommer inn</p>
-            </div>
-            <div>
-              <p class="spine-h">under</p>
-              <p class="spine-b">Trening og lege</p>
-            </div>
-            <div>
-              <p class="spine-h"><span class="mark">etter</span></p>
-              <p class="spine-b">Du blir værende</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="slide" data-i="5" id="s06">
-      <div class="slide-body pair-body">
-        <p class="kicker">Klinikk 1</p>
-        <h1 class="display h-s">Trening og lege i samme reise.</h1>
-        <div class="pair">
-          <figure class="inset phone">
-            <div class="mat"><img src="shots/feelix/app-01-01-idag.png" alt=""></div>
-            <figcaption class="caption">Klinikk 1 · app</figcaption>
-          </figure>
-          <figure class="inset wide">
-            <div class="mat"><img src="shots/feelix/dashboard-01-pasient-grid.png" alt=""></div>
-            <figcaption class="caption">Klinikk 1 · dashboard</figcaption>
-          </figure>
-        </div>
-      </div>
-    </section>
-
-    <section class="slide" data-i="6" id="s07">
-      <div class="slide-body pair-body">
-        <p class="kicker">Klinikk 2</p>
-        <h1 class="display h-s">Pasient og klinikk ser det samme.</h1>
-        <div class="pair">
-          <figure class="inset phone">
-            <div class="mat"><img src="shots/ygdra/livsstil-01-app-profil.png" alt=""></div>
-            <figcaption class="caption">Klinikk 2 · app</figcaption>
-          </figure>
-          <figure class="inset wide">
-            <div class="mat"><img src="shots/ygdra/livsstil-04-dashboard.png" alt=""></div>
-            <figcaption class="caption">Klinikk 2 · dashboard</figcaption>
-          </figure>
-        </div>
-      </div>
-    </section>
-
-    <section class="slide" data-i="7" id="s08">
-      <div class="slide-body">
         <p class="kicker">Helsehvelvet</p>
         <div class="vault-fig">
+          <div class="consent-lid">
+            <p class="consent-lid-k">Bruker-consent</p>
+            <div class="consent-lid-row">
+              <span class="cf on"><i></i>Trening</span>
+              <span class="cf on"><i></i>Lege</span>
+              <span class="cf off"><i></i>NAV</span>
+              <span class="cf on"><i></i>BHT</span>
+              <span class="cf off"><i></i>Forsikring</span>
+            </div>
+            <p class="consent-line">Data flyter dit brukeren vil.</p>
+          </div>
           <svg class="vault-svg" viewBox="0 0 1000 340" role="img" aria-label="Helsehvelvet: dokumenter går inn i et låst rom. Inni: kryptert lagring, compliant LLM, intelligent agent. Én nøkkel per hvelv.">
             <rect x="240" y="16" width="520" height="308" rx="8" fill="#FFFEFA" stroke="#1B1D1A" stroke-width="3"/>
             <rect x="236" y="148" width="8" height="44" fill="#FBF9F4"/>
@@ -1041,6 +1042,67 @@ body.on-dark .tab.active { color: var(--accent); }
       </div>
     </section>
 
+    <section class="slide" data-i="5" id="s06">
+      <div class="slide-body">
+        <p class="kicker">Før · under · etter</p>
+        <h1 class="display h-m">Når du blir bedre, forsvinner du ikke.</h1>
+        <div class="spine" role="img" aria-label="Før, under, etter. Etter er nå.">
+          <div class="spine-rail">
+            <span class="tick"></span>
+            <span class="tick"></span>
+            <span class="tick"></span>
+          </div>
+          <div class="spine-caps">
+            <div>
+              <p class="spine-h">før</p>
+              <p class="spine-b">Du kommer inn</p>
+            </div>
+            <div>
+              <p class="spine-h">under</p>
+              <p class="spine-b">Trening og lege</p>
+            </div>
+            <div>
+              <p class="spine-h"><span class="mark">etter</span></p>
+              <p class="spine-b">Du blir værende</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-i="6" id="s07">
+      <div class="slide-body pair-body">
+        <p class="kicker">Klinikk 1</p>
+        <h1 class="display h-s">Trening og lege i samme reise.</h1>
+        <div class="pair">
+          <figure class="inset phone">
+            <div class="mat"><img src="shots/feelix/app-01-01-idag.png" alt=""></div>
+            <figcaption class="caption">Klinikk 1 · app</figcaption>
+          </figure>
+          <figure class="inset wide">
+            <div class="mat"><img src="shots/feelix/dashboard-01-pasient-grid.png" alt=""></div>
+            <figcaption class="caption">Klinikk 1 · dashboard</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-i="7" id="s08">
+      <div class="slide-body pair-body">
+        <p class="kicker">Klinikk 2</p>
+        <h1 class="display h-s">Pasient og klinikk ser det samme.</h1>
+        <div class="pair">
+          <figure class="inset phone">
+            <div class="mat"><img src="shots/ygdra/livsstil-01-app-profil.png" alt=""></div>
+            <figcaption class="caption">Klinikk 2 · app</figcaption>
+          </figure>
+          <figure class="inset wide">
+            <div class="mat"><img src="shots/ygdra/livsstil-04-dashboard.png" alt=""></div>
+            <figcaption class="caption">Klinikk 2 · dashboard</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
 
     <section class="slide" data-i="8" id="s09">
       <div class="slide-body proto-body">

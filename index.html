@@ -375,6 +375,50 @@ body.on-dark .tab.active { color: var(--accent); }
 
 /* Abel — labels only; empty parchment is the samarbeid */
 .web { width: min(100%, 34rem); aspect-ratio: 1.15 / 1; position: relative; margin: 1.5rem auto 0; }
+.web-msg {
+  position: absolute;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--mute);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  letter-spacing: 0.01em;
+}
+#s04.is-current .web-msg.a { animation: drift-a 12s 0s infinite; }
+#s04.is-current .web-msg.b { animation: drift-b 12s 2.4s infinite; }
+#s04.is-current .web-msg.c { animation: drift-c 12s 4.8s infinite; }
+#s04.is-current .web-msg.d { animation: drift-d 12s 7.2s infinite; }
+#s04.is-current .web-msg.e { animation: drift-e 12s 9.6s infinite; }
+@keyframes drift-a {
+  0%, 6% { opacity: 0; top: 14%; left: 50%; transform: translate(-50%, 0); }
+  14%, 22% { opacity: 1; top: 30%; left: 50%; transform: translate(-50%, 0); }
+  32%, 100% { opacity: 0; top: 40%; left: 50%; transform: translate(-50%, 0); }
+}
+@keyframes drift-b {
+  0%, 6% { opacity: 0; top: 28%; right: 2%; transform: translate(0, 0); }
+  14%, 22% { opacity: 1; top: 40%; right: 22%; transform: translate(0, 0); }
+  32%, 100% { opacity: 0; top: 46%; right: 34%; transform: translate(0, 0); }
+}
+@keyframes drift-c {
+  0%, 6% { opacity: 0; bottom: 8%; right: 10%; transform: translate(0, 0); }
+  14%, 22% { opacity: 1; bottom: 28%; right: 24%; transform: translate(0, 0); }
+  32%, 100% { opacity: 0; bottom: 38%; right: 34%; transform: translate(0, 0); }
+}
+@keyframes drift-d {
+  0%, 6% { opacity: 0; bottom: 8%; left: 10%; transform: translate(0, 0); }
+  14%, 22% { opacity: 1; bottom: 28%; left: 24%; transform: translate(0, 0); }
+  32%, 100% { opacity: 0; bottom: 38%; left: 34%; transform: translate(0, 0); }
+}
+@keyframes drift-e {
+  0%, 6% { opacity: 0; top: 28%; left: 0; transform: translate(0, 0); }
+  14%, 22% { opacity: 1; top: 40%; left: 18%; transform: translate(0, 0); }
+  32%, 100% { opacity: 0; top: 46%; left: 30%; transform: translate(0, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  #s04.is-current .web-msg { animation: none; opacity: 0; }
+}
 .web-who {
   font-family: var(--display);
   font-weight: 500;
@@ -780,6 +824,11 @@ body.on-dark .tab.active { color: var(--accent); }
           <p class="web-n n5">BHT</p>
           <p class="web-n n7">NAV</p>
           <p class="web-n n10">Forsikring</p>
+          <span class="web-msg a">Treningsplan</span>
+          <span class="web-msg b">Henvisning</span>
+          <span class="web-msg c">Oppfølging</span>
+          <span class="web-msg d">Sykemelding</span>
+          <span class="web-msg e">Dekning</span>
           <p class="web-who">Pasienten</p>
         </div>
         <p class="web-gp">Fastlegen kan <span class="web-u">koordinere</span>.</p>

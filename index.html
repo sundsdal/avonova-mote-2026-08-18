@@ -373,7 +373,7 @@ body.on-dark .tab.active { color: var(--accent); }
 }
 .ready li:last-child { border-bottom: 1px solid var(--line); }
 
-/* Abel — icons + static slips; empty parchment is the samarbeid */
+/* Helsesamarbeid — colored partners + data exchanges */
 .web { width: min(100%, 34rem); aspect-ratio: 1.15 / 1; position: relative; margin: 1.5rem auto 0; }
 .web-n {
   position: absolute;
@@ -385,15 +385,14 @@ body.on-dark .tab.active { color: var(--accent); }
   font-family: var(--sans);
   font-weight: 500;
   font-size: 12px;
-  color: #303630;
   white-space: nowrap;
 }
 .web-n svg { display: block; }
-.web-n.n12 { top: 0; left: 50%; transform: translateX(-50%); }
-.web-n.n2 { top: 22%; right: 0; }
-.web-n.n5 { bottom: 0; right: 8%; }
-.web-n.n7 { bottom: 0; left: 8%; }
-.web-n.n10 { top: 22%; left: 0; }
+.web-n.n12 { top: 0; left: 50%; transform: translateX(-50%); color: #A4843D; }
+.web-n.n2 { top: 22%; right: 0; color: #176B42; }
+.web-n.n5 { bottom: 0; right: 8%; color: #3F6F6A; }
+.web-n.n7 { bottom: 0; left: 8%; color: #6A5A48; }
+.web-n.n10 { top: 22%; left: 0; color: #B56A3A; }
 .web-who {
   font-family: var(--display);
   font-weight: 500;
@@ -406,18 +405,63 @@ body.on-dark .tab.active { color: var(--accent); }
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.web-slip {
+.web-x {
   position: absolute;
-  opacity: 0.85;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  padding: 0.2rem 0.48rem;
+  border-radius: 3px;
+  border: 1px solid;
+  white-space: nowrap;
   pointer-events: none;
-  line-height: 0;
+  opacity: 0;
+  line-height: 1.2;
 }
-.web-slip svg { display: block; }
-.web-slip.a { top: 22%; left: 50%; transform: translateX(-50%) rotate(-2deg); }
-.web-slip.b { top: 34%; right: 18%; transform: rotate(4deg); }
-.web-slip.c { bottom: 18%; right: 20%; transform: rotate(-3deg); }
-.web-slip.d { bottom: 18%; left: 20%; transform: rotate(3deg); }
-.web-slip.e { top: 34%; left: 16%; transform: rotate(-4deg); }
+.web-x.x-trening { color: #8A6E2E; background: #F3EAD3; border-color: #D4C08A; }
+.web-x.x-lege { color: #176B42; background: #E4F4EA; border-color: #9AD4B2; }
+.web-x.x-bht { color: #3F6F6A; background: #E4EEEC; border-color: #A3C4C0; }
+.web-x.x-nav { color: #6A5A48; background: #F0E8DF; border-color: #C8B6A2; }
+.web-x.x-fors { color: #9A542C; background: #F6E6DA; border-color: #E0B496; }
+#s04.is-current .web-x.x-trening { animation: x-a 7.5s 0s infinite; }
+#s04.is-current .web-x.x-lege { animation: x-b 7.5s 1.5s infinite; }
+#s04.is-current .web-x.x-bht { animation: x-c 7.5s 3s infinite; }
+#s04.is-current .web-x.x-nav { animation: x-d 7.5s 4.5s infinite; }
+#s04.is-current .web-x.x-fors { animation: x-e 7.5s 6s infinite; }
+@keyframes x-a {
+  0%, 8% { opacity: 0; top: 16%; left: 50%; transform: translate(-50%, 0); }
+  22%, 34% { opacity: 1; top: 30%; left: 50%; transform: translate(-50%, 0); }
+  48%, 100% { opacity: 0; top: 40%; left: 50%; transform: translate(-50%, 0); }
+}
+@keyframes x-b {
+  0%, 8% { opacity: 0; top: 28%; right: 2%; }
+  22%, 34% { opacity: 1; top: 40%; right: 22%; }
+  48%, 100% { opacity: 0; top: 46%; right: 34%; }
+}
+@keyframes x-c {
+  0%, 8% { opacity: 0; bottom: 8%; right: 10%; }
+  22%, 34% { opacity: 1; bottom: 26%; right: 22%; }
+  48%, 100% { opacity: 0; bottom: 36%; right: 34%; }
+}
+@keyframes x-d {
+  0%, 8% { opacity: 0; bottom: 8%; left: 10%; }
+  22%, 34% { opacity: 1; bottom: 26%; left: 22%; }
+  48%, 100% { opacity: 0; bottom: 36%; left: 34%; }
+}
+@keyframes x-e {
+  0%, 8% { opacity: 0; top: 28%; left: 0; }
+  22%, 34% { opacity: 1; top: 40%; left: 16%; }
+  48%, 100% { opacity: 0; top: 46%; left: 30%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #s04.is-current .web-x { animation: none; opacity: 1; }
+  #s04.is-current .web-x.x-trening { top: 28%; left: 50%; transform: translateX(-50%); }
+  #s04.is-current .web-x.x-lege { top: 38%; right: 20%; }
+  #s04.is-current .web-x.x-bht { bottom: 22%; right: 18%; }
+  #s04.is-current .web-x.x-nav { bottom: 22%; left: 18%; }
+  #s04.is-current .web-x.x-fors { top: 38%; left: 14%; }
+}
 .web-gp  { margin-top: 1.25rem; font-size: 15px; font-weight: 500; color: var(--accent-ink); text-align: center; }
 .web-plat { margin-top: 0.25rem; font-size: 14px; color: var(--mute); text-align: center; }
 .web-u { border-bottom: 1px solid #2FB56A; padding-bottom: 0.04em; }
@@ -752,7 +796,7 @@ body.on-dark .tab.active { color: var(--accent); }
     <button class="tab active" data-go="0" type="button"><span class="tab-num">01</span><span class="tab-label">Kin</span></button>
     <button class="tab" data-go="1" type="button"><span class="tab-num">02</span><span class="tab-label">Sverre</span></button>
     <button class="tab" data-go="2" type="button"><span class="tab-num">03</span><span class="tab-label">Klar</span></button>
-    <button class="tab" data-go="3" type="button"><span class="tab-num">04</span><span class="tab-label">Abel</span></button>
+    <button class="tab" data-go="3" type="button"><span class="tab-num">04</span><span class="tab-label">Samarbeid</span></button>
     <button class="tab" data-go="4" type="button"><span class="tab-num">05</span><span class="tab-label">Etter</span></button>
     <button class="tab" data-go="5" type="button"><span class="tab-num">06</span><span class="tab-label">Klinikk 1</span></button>
     <button class="tab" data-go="6" type="button"><span class="tab-num">07</span><span class="tab-label">Klinikk 2</span></button>
@@ -807,11 +851,11 @@ body.on-dark .tab.active { color: var(--accent); }
 
     <section class="slide" data-i="3" id="s04">
       <div class="slide-body">
-        <p class="kicker">Abel</p>
+        <p class="kicker">Helsesamarbeid</p>
         <h1 class="display h-s">Pasienten i midten.</h1>
         <div class="web" role="img" aria-label="Pasienten i midten. Trening, Lege, BHT, NAV og Forsikring rundt. Fastlegen kan koordinere. Kin er plattformen de møtes i.">
           <div class="web-n n12">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1B1D1A" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <circle cx="5" cy="12" r="2.4"/>
               <circle cx="19" cy="12" r="2.4"/>
               <line x1="7.5" y1="12" x2="16.5" y2="12"/>
@@ -823,7 +867,7 @@ body.on-dark .tab.active { color: var(--accent); }
             <span>Trening</span>
           </div>
           <div class="web-n n2">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1B1D1A" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <circle cx="7" cy="5.5" r="1.7"/>
               <circle cx="11.5" cy="5.5" r="1.7"/>
               <path d="M7 7.2v3.2c0 3.2 5 3.2 5 6.6"/>
@@ -833,7 +877,7 @@ body.on-dark .tab.active { color: var(--accent); }
             <span>Lege</span>
           </div>
           <div class="web-n n5">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1B1D1A" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M4.5 14.5c0-5.2 3.2-8.5 7.5-8.5s7.5 3.3 7.5 8.5"/>
               <line x1="3.5" y1="14.5" x2="20.5" y2="14.5"/>
               <line x1="12" y1="6" x2="12" y2="8.5"/>
@@ -841,7 +885,7 @@ body.on-dark .tab.active { color: var(--accent); }
             <span>BHT</span>
           </div>
           <div class="web-n n7">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1B1D1A" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <rect x="4.5" y="8" width="15" height="12.5"/>
               <line x1="4.5" y1="8" x2="19.5" y2="8"/>
               <rect x="10.2" y="14.5" width="3.6" height="6"/>
@@ -851,16 +895,17 @@ body.on-dark .tab.active { color: var(--accent); }
             <span>NAV</span>
           </div>
           <div class="web-n n10">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1B1D1A" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M12 3.2l7 2.8v6.2c0 4.4-3.2 7.6-7 9.2-3.8-1.6-7-4.8-7-9.2V6z"/>
             </svg>
             <span>Forsikring</span>
           </div>
-          <span class="web-slip a" aria-hidden="true"><svg width="22" height="8" viewBox="0 0 22 8" fill="none" stroke="#ECE8DD" stroke-width="1" aria-hidden="true"><rect x="0.5" y="0.5" width="21" height="7" rx="1"/></svg></span>
-          <span class="web-slip b" aria-hidden="true"><svg width="22" height="8" viewBox="0 0 22 8" fill="none" stroke="#ECE8DD" stroke-width="1" aria-hidden="true"><rect x="0.5" y="0.5" width="21" height="7" rx="1"/></svg></span>
-          <span class="web-slip c" aria-hidden="true"><svg width="22" height="8" viewBox="0 0 22 8" fill="none" stroke="#ECE8DD" stroke-width="1" aria-hidden="true"><rect x="0.5" y="0.5" width="21" height="7" rx="1"/></svg></span>
-          <span class="web-slip d" aria-hidden="true"><svg width="22" height="8" viewBox="0 0 22 8" fill="none" stroke="#ECE8DD" stroke-width="1" aria-hidden="true"><rect x="0.5" y="0.5" width="21" height="7" rx="1"/></svg></span>
-          <span class="web-slip e" aria-hidden="true"><svg width="22" height="8" viewBox="0 0 22 8" fill="none" stroke="#ECE8DD" stroke-width="1" aria-hidden="true"><rect x="0.5" y="0.5" width="21" height="7" rx="1"/></svg></span>
+          
+          <span class="web-x x-trening">Treningsdata</span>
+          <span class="web-x x-lege">Henvisning</span>
+          <span class="web-x x-bht">Oppfølging</span>
+          <span class="web-x x-nav">Sykemelding</span>
+          <span class="web-x x-fors">Dekning</span>
           <p class="web-who">Pasienten</p>
         </div>
         <p class="web-gp">Fastlegen kan <span class="web-u">koordinere</span>.</p>

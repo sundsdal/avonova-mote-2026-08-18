@@ -636,6 +636,85 @@ body.on-dark .tab.active { color: var(--accent); }
   border-color: var(--ink) transparent transparent transparent;
 }
 
+/* Healable doc flow — copied from kinhealth/healable design/v3 */
+.hbl-flow {
+  --oat: #FAF9F6; --paper: #fff; --paper-2: #F4F2EC; --ink: #23201C;
+  --ink-80: #45403A; --ink-60: #726B62; --ink-45: #9A938A; --ink-30: #BEB8AD;
+  --line: #E8E5DD; --line-2: #F0EEE7; --blue: #3D5375; --blue-12: rgba(61,83,117,0.12);
+  --ok: #2E9C72; --ok-12: rgba(46,156,114,0.12); --e1: 0 1px 2px rgba(58,42,30,0.05);
+  font-family: Manrope, ui-sans-serif, system-ui, sans-serif;
+  background: var(--oat);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 1.05rem 1.15rem;
+  min-height: 0;
+}
+.hbl-flow .bubble { max-width: 36rem; }
+.hbl-flow .me, .hbl-flow .bot {
+  font-size: 14px;
+  line-height: 1.45;
+  margin: 0.55rem 0;
+}
+.hbl-flow .me { color: var(--ink-60); }
+.hbl-flow .file, .hbl-flow .build, .hbl-flow .card, .hbl-flow .paper {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: var(--e1);
+}
+.hbl-flow .file {
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: 0.7rem 0.85rem; margin: 0.55rem 0; max-width: 22rem;
+}
+.hbl-flow .file b { display: block; font-size: 13.5px; font-weight: 600; }
+.hbl-flow .file span { font-size: 12px; color: var(--ink-45); }
+.hbl-flow .chip {
+  display: inline-flex; align-items: center;
+  padding: 0.45rem 0.9rem; border-radius: 999px;
+  font-size: 12.5px; font-weight: 600;
+  background: linear-gradient(180deg,#757DEE,#4665D8); color: #fff; border: 0;
+}
+.hbl-flow .build { padding: 0.55rem 0.9rem; max-width: 22rem; margin: 0.55rem 0; }
+.hbl-flow .brow {
+  display: flex; align-items: center; gap: 0.65rem; padding: 0.32rem 0;
+  font-size: 12.5px; font-weight: 600;
+}
+.hbl-flow .dot {
+  width: 22px; height: 22px; border-radius: 7px; flex: 0 0 auto;
+  display: grid; place-items: center; font-size: 11px;
+  background: var(--ok-12); color: var(--ok);
+}
+.hbl-flow .dot.on { background: var(--blue-12); color: var(--blue); }
+.hbl-flow .card {
+  display: flex; align-items: center; gap: 0.8rem;
+  padding: 0.75rem 0.9rem; margin: 0.55rem 0; max-width: 28rem;
+}
+.hbl-flow .mini {
+  width: 34px; height: 42px; border-radius: 6px; border: 1px solid var(--line);
+  background: #fff; padding: 5px; display: flex; flex-direction: column; gap: 2px;
+}
+.hbl-flow .mini i { display: block; height: 2px; background: var(--line); border-radius: 2px; }
+.hbl-flow .mini i:first-child { height: 3px; width: 80%; background: var(--ink-30); }
+.hbl-flow .card .k { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-45); font-weight: 600; }
+.hbl-flow .card .t { font-size: 15px; font-weight: 500; margin-top: 2px; }
+.hbl-flow .card .s { font-size: 12px; color: var(--ink-45); margin-top: 2px; }
+.hbl-flow .paper {
+  padding: 1.15rem 1.35rem 1.3rem; max-width: 34rem; margin-top: 0.7rem;
+}
+.hbl-flow .paper h3 {
+  font-size: 1.15rem; font-weight: 500; margin: 0 0 0.15rem;
+  font-family: "Cormorant Garamond", Times, serif;
+}
+.hbl-flow .paper .meta { font-size: 12px; color: var(--ink-45); }
+.hbl-flow .paper .sec { margin-top: 0.75rem; }
+.hbl-flow .paper .sec b {
+  display: block; font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--ink-45); margin-bottom: 0.25rem;
+}
+.hbl-flow .paper p, .hbl-flow .paper li { font-size: 13.5px; line-height: 1.5; color: var(--ink-80); margin: 0; }
+.hbl-flow .paper ul { margin: 0; padding-left: 1.1rem; }
+
 /* Healable stepper — Kin chrome, no fake app bar */
 .demo { cursor: default; margin-top: 0.85rem; min-height: 0; }
 .demo-steps {
@@ -937,28 +1016,55 @@ body.on-dark .tab.active { color: var(--accent); }
 
     <section class="slide" data-i="8" id="s09">
       <div class="slide-body shot-body">
-        <p class="kicker">Healable</p>
-        <h1 class="display h-s">Utkast, så signatur.</h1>
-        <p class="lede" style="margin-top:0.7rem;font-size:17px;max-width:48ch;">NAV-erklæring er use caset — ikke at Avonova bruker det.</p>
+        <p class="kicker">Healable · v3</p>
+        <h1 class="display h-s">Skill lager dokumentet.</h1>
         <div class="demo" id="demo">
           <div class="demo-steps">
-            <button type="button" data-demo-go="0" class="is-on"><span class="n">01</span><span class="l">Hjem</span></button>
-            <button type="button" data-demo-go="1"><span class="n">02</span><span class="l">Erklæring</span></button>
-            <button type="button" data-demo-go="2"><span class="n">03</span><span class="l">Sikkerhet</span></button>
+            <button type="button" data-demo-go="0" class="is-on"><span class="n">01</span><span class="l">Fil</span></button>
+            <button type="button" data-demo-go="1"><span class="n">02</span><span class="l">Bygger</span></button>
+            <button type="button" data-demo-go="2"><span class="n">03</span><span class="l">Dokument</span></button>
           </div>
           <div class="d-stage">
-            <figure class="inset d-screen is-on" data-demo="0">
-              <div class="mat"><img src="shots/healable-hjem.png" alt=""></div>
-              <figcaption class="caption">Healable · legeerklæring</figcaption>
-            </figure>
-            <figure class="inset d-screen" data-demo="1">
-              <div class="mat"><img src="shots/healable-legeerklaering.png" alt=""></div>
-              <figcaption class="caption">Healable · legeerklæring</figcaption>
-            </figure>
-            <figure class="inset d-screen" data-demo="2">
-              <div class="mat"><img src="shots/healable-sikkerhet.png" alt=""></div>
-              <figcaption class="caption">Healable · legeerklæring</figcaption>
-            </figure>
+            <div class="d-screen is-on hbl-flow" data-demo="0">
+              <p class="me">La til en fil</p>
+              <div class="file"><div><b>Lipidpanel_23-25.pdf</b><span>PDF · 1,8 MB · 4 sider</span></div></div>
+              <p class="bot">Jeg har lest de fem analyttene. Vil du at jeg lager et pasientnotat du kan ta med til konsultasjonen?</p>
+              <span class="chip">Lag et pasientnotat</span>
+            </div>
+            <div class="d-screen hbl-flow" data-demo="1">
+              <p class="me">Lag et pasientnotat jeg kan ta med.</p>
+              <div class="build">
+                <div class="brow"><span class="dot">✓</span> Leser Lipidpanel_23-25.pdf</div>
+                <div class="brow"><span class="dot">✓</span> Henter pasientnotat-mal</div>
+                <div class="brow"><span class="dot">✓</span> Fyller inn verdier og referanser</div>
+                <div class="brow"><span class="dot">✓</span> Forankrer hver verdi i kilden</div>
+                <div class="brow"><span class="dot on">→</span> Skriver til Dokumenter</div>
+              </div>
+            </div>
+            <div class="d-screen hbl-flow" data-demo="2">
+              <div class="card">
+                <div class="mini"><i></i><i></i><i></i><i></i><i></i></div>
+                <div>
+                  <div class="k">Dokument · v1</div>
+                  <div class="t">Pasientnotat — lipidpanel</div>
+                  <div class="s">1 side · Første utkast · nå</div>
+                </div>
+              </div>
+              <div class="paper">
+                <h3>Pasientnotat</h3>
+                <p class="meta">Emma Moen · 04.08.2026 · v1 · Lipidpanel_23-25.pdf</p>
+                <div class="sec"><b>Sammendrag</b>
+                  <p>P-LDL ligger på 4,1 mmol/L mot mål under 3,0 — fortsatt over. Triglyserider 2,4 mmol/L er også litt høyt, mens HDL 1,2 mmol/L ligger fint.</p>
+                </div>
+                <div class="sec"><b>Funn</b>
+                  <ul>
+                    <li>P-LDL-kolesterol 4,1 mmol/L — over mål &lt; 3,0</li>
+                    <li>P-Triglyserider 2,4 mmol/L — litt over referanse</li>
+                    <li>P-HDL-kolesterol 1,2 mmol/L — innenfor referanse</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

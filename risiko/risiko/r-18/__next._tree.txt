@@ -1,0 +1,2 @@
+:HL["/avonova-mote-2026-08-18/risiko/_next/static/chunks/0awddt1xbdklq.css","style"]
+0:{"tree":{"name":"","param":null,"prefetchHints":4176,"slots":{"children":{"name":"(workspace)","param":null,"prefetchHints":4192,"slots":{"children":{"name":"risiko","param":null,"prefetchHints":4192,"slots":{"children":{"name":"riskId","param":{"type":"d","key":"r-18","siblings":[]},"prefetchHints":4192,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":4256,"slots":null}}}}}}}}},"staleTime":300,"buildId":"pgqWq7TEVhzg5FedN5fVW"}

@@ -371,45 +371,62 @@ body.on-dark .tab.active { color: var(--accent); }
 }
 .ready li:last-child { border-bottom: 1px solid var(--line); }
 
-/* Abel — collaboration web */
+/* Abel — patient at the center */
 .web {
   position: relative;
-  width: min(100%, 40rem);
-  aspect-ratio: 1.28 / 1;
-  margin: 1.2rem auto 0;
+  width: min(100%, 44rem);
+  aspect-ratio: 1.42 / 1;
+  margin: 0.6rem auto 0;
 }
 .web svg {
   position: absolute;
-  inset: 18% 14% 16%;
+  inset: 0;
   overflow: visible;
 }
-.web-kin {
+.web-core {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -46%);
+  text-align: center;
+  pointer-events: none;
+}
+.web-who {
   font-family: var(--display);
   font-weight: 500;
-  font-size: clamp(34px, 4.2vw, 48px);
+  font-size: clamp(30px, 3.6vw, 42px);
   letter-spacing: -0.02em;
   line-height: 1;
   color: var(--ink);
+}
+.web-gp {
+  margin-top: 0.35rem;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+.web-gp span {
+  color: var(--accent-ink);
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 0.05em;
 }
 .web-n {
   position: absolute;
   font-family: var(--display);
   font-weight: 500;
-  font-size: clamp(22px, 2.8vw, 32px);
+  font-size: clamp(20px, 2.5vw, 28px);
   letter-spacing: -0.02em;
   line-height: 1;
   color: var(--ink);
   white-space: nowrap;
 }
-.web-trening { top: 0; left: 50%; transform: translateX(-50%); }
-.web-lege { top: 28%; right: 0; }
-.web-bht { bottom: 2%; right: 10%; }
-.web-fors { bottom: 2%; left: 6%; }
-.web-nav { top: 28%; left: 0; }
+.web-trening { top: 1%; left: 50%; transform: translateX(-50%); }
+.web-bht { top: 28%; right: 0; }
+.web-fors { bottom: 4%; right: 8%; }
+.web-nav { bottom: 4%; left: 8%; }
+.web-kin { top: 28%; left: 0; }
 
 .arrow {
   display: block;
@@ -811,23 +828,32 @@ body.on-dark .tab.active { color: var(--accent); }
     <section class="slide" data-i="3" id="s04">
       <div class="slide-body">
         <p class="kicker">Abel</p>
-        <h1 class="display h-s">Automatisere samarbeidet.</h1>
-        <p class="lede">Fem parter. Ett løp.</p>
-        <div class="web" role="img" aria-label="Kin i midten. Rundt: trening, lege, BHT, forsikring og NAV.">
-          <svg viewBox="0 0 100 100" fill="none" aria-hidden="true">
-            <polygon points="50,8 88,38 74,84 26,84 12,38" stroke="#ECE8DD" stroke-width="0.7"/>
-            <line x1="50" y1="50" x2="50" y2="8" stroke="#2FB56A" stroke-width="1.15"/>
-            <line x1="50" y1="50" x2="88" y2="38" stroke="#ECE8DD" stroke-width="0.7"/>
-            <line x1="50" y1="50" x2="74" y2="84" stroke="#ECE8DD" stroke-width="0.7"/>
-            <line x1="50" y1="50" x2="26" y2="84" stroke="#ECE8DD" stroke-width="0.7"/>
-            <line x1="50" y1="50" x2="12" y2="38" stroke="#ECE8DD" stroke-width="0.7"/>
+        <h1 class="display h-s">Pasienten i midten.</h1>
+        <div class="web" role="img" aria-label="Pasienten i midten. Fastlegen koordinerer. Trening, BHT, forsikring, NAV og Kin rundt.">
+          <svg viewBox="0 0 200 140" fill="none" aria-hidden="true">
+            <path d="M100 14 C 78 28, 72 52, 92 64" stroke="#A39E90" stroke-width="1.25"/>
+            <path d="M176 42 C 150 36, 124 48, 110 64" stroke="#A39E90" stroke-width="1.25"/>
+            <path d="M168 122 C 146 104, 124 90, 108 78" stroke="#A39E90" stroke-width="1.25"/>
+            <path d="M32 122 C 54 104, 76 90, 92 78" stroke="#A39E90" stroke-width="1.25"/>
+            <path d="M24 42 C 50 36, 76 48, 90 64" stroke="#A39E90" stroke-width="1.25"/>
+            <path d="M112 12 C 150 4, 176 18, 178 40" stroke="#C4BFAF" stroke-width="1.05"/>
+            <path d="M180 50 C 192 78, 186 108, 170 122" stroke="#C4BFAF" stroke-width="1.05"/>
+            <path d="M160 128 C 120 140, 80 140, 40 128" stroke="#C4BFAF" stroke-width="1.05"/>
+            <path d="M28 122 C 10 104, 6 72, 22 48" stroke="#C4BFAF" stroke-width="1.05"/>
+            <path d="M22 40 C 28 16, 60 6, 88 12" stroke="#C4BFAF" stroke-width="1.05"/>
+            <path d="M100 16 C 40 36, 36 100, 88 122" stroke="#D2CDBE" stroke-width="0.95"/>
+            <path d="M100 16 C 160 36, 164 100, 112 122" stroke="#D2CDBE" stroke-width="0.95"/>
+            <ellipse cx="100" cy="70" rx="32" ry="21" stroke="#2FB56A" stroke-width="1.6"/>
           </svg>
-          <p class="web-kin mark">Kin</p>
           <p class="web-n web-trening">Trening</p>
-          <p class="web-n web-lege">Lege</p>
           <p class="web-n web-bht">BHT</p>
           <p class="web-n web-fors">Forsikring</p>
           <p class="web-n web-nav">NAV</p>
+          <p class="web-n web-kin">Kin</p>
+          <div class="web-core">
+            <p class="web-who">Pasienten</p>
+            <p class="web-gp">Koordinert av <span>fastlegen</span></p>
+          </div>
         </div>
       </div>
     </section>
